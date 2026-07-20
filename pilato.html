@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lago di Pilato — Il lago dove fu gettato Ponzio Pilato | Stà Pagat...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #121212; --bg-sidebar: #0a0a0a; --bg-card: #1e1e1e;
+            --text-main: #e0e0e0; --text-muted: #a0a0a0;
+            --accent: #d4a373; --accent-hover: #b58b5e; --border: #333333;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.7; display: flex; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; color: #ffffff; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        a:hover { color: var(--accent); }
+
+        .sidebar { width: 250px; height: 100vh; background-color: var(--bg-sidebar); border-right: 1px solid var(--border); position: fixed; padding: 2rem 1.5rem; display: flex; flex-direction: column; }
+        .sidebar h2 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; font-style: italic; }
+        .sidebar p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .nav-links { list-style: none; }
+        .nav-links li { margin-bottom: 1rem; }
+        .nav-links a { font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+
+        .main-content { margin-left: 250px; padding: 3rem 4rem; max-width: 900px; width: 100%; }
+
+        .hero { margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 3rem; }
+        .hero-tag { display: inline-block; background-color: rgba(212,163,115,0.2); color: var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+        .hero h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 1rem; }
+        .hero h1 span { color: var(--accent); font-style: italic; }
+        .hero-subtitle { font-size: 1.3rem; color: var(--text-muted); max-width: 700px; font-style: italic; }
+
+        .photo-placeholder { width: 100%; height: 360px; border: 2px dashed var(--border); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); margin-bottom: 2.5rem; background-color: var(--bg-card); text-align: center; padding: 1rem; }
+        .photo-placeholder .emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+        .section { margin-bottom: 3rem; }
+        .section-title { font-size: 2rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent); padding-left: 1rem; }
+        .section p { color: var(--text-main); margin-bottom: 1.2rem; font-size: 1.05rem; }
+        .section p strong { color: var(--accent); }
+
+        .tech-card { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; margin-bottom: 3rem; }
+        .tech-card h3 { color: var(--accent); margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .tech-item { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px dashed var(--border); gap: 1rem; }
+        .tech-item:last-child { border-bottom: none; }
+        .tech-label { color: var(--text-muted); font-size: 0.95rem; }
+        .tech-value { color: #ffffff; font-weight: 600; text-align: right; }
+
+        .callout { background: linear-gradient(135deg, rgba(212,163,115,0.12), rgba(212,163,115,0.04)); border-left: 4px solid var(--accent); padding: 1.5rem 2rem; border-radius: 4px; margin: 2rem 0; font-style: italic; color: #ffffff; }
+        .callout strong { color: var(--accent); font-style: normal; }
+
+        .tips-list { list-style: none; margin-top: 1rem; }
+        .tips-list li { padding: 0.8rem 0 0.8rem 2rem; position: relative; color: var(--text-main); border-bottom: 1px solid rgba(51,51,51,0.5); }
+        .tips-list li:before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: bold; font-size: 1.2rem; }
+
+        .warning { background-color: rgba(200,50,50,0.1); border-left: 4px solid #c83232; padding: 1.5rem 2rem; border-radius: 4px; margin: 2rem 0; color: var(--text-main); }
+        .warning strong { color: #ff6b6b; display: block; margin-bottom: 0.5rem; }
+
+        .back-link { display: inline-block; color: var(--accent); font-weight: 600; margin-top: 2rem; font-size: 0.95rem; }
+
+        footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 1.5rem; }
+            .main-content { margin-left: 0; padding: 2rem 1.5rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .section-title { font-size: 1.5rem; }
+            .tech-item { flex-direction: column; gap: 0.2rem; }
+            .tech-value { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>Stà Pagat...</h2>
+        <p>Viaggi e natura a passo lento</p>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="chi-sono.html">👤 Chi Sono</a></li>
+            <li><a href="antermoia.html">🏔️ Lago di Antermoia</a></li>
+            <li><a href="pilato.html">⛰️ Lago di Pilato</a></li>
+            <li><a href="lu-vurghe.html">💧 Lu Vurghe</a></li>
+            <li><a href="budapest.html">✈️ Budapest 2026</a></li>
+            <li><a href="https://instagram.com/walter.outdoor" target="_blank">📸 Instagram</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+
+        <section class="hero">
+            <span class="hero-tag">⛰️ Monti Sibillini · Marche / Umbria</span>
+            <h1>Lago di Pilato: il lago dove <span>fu gettato Ponzio Pilato</span></h1>
+            <p class="hero-subtitle">L'unico lago naturale delle Marche, a 1.941 metri. Tra pietra, neve residua, leggende medievali e quel blu che ti ripaga di ogni passo.</p>
+        </section>
+
+        <!-- PER METTERE LA TUA FOTO: quando avrai la foto, sostituisci il div qui sotto con:
+             <img src="images/pilato.jpg" alt="Lago di Pilato, Monti Sibillini" style="width:100%; border-radius:10px; margin-bottom:2.5rem; border:1px solid #333;"> -->
+        <div class="photo-placeholder">
+            <span class="emoji">⛰️</span>
+            <span>La tua foto del Lago di Pilato qui (es. pilato.jpg nella cartella images)</span>
+        </div>
+
+        <section class="section">
+            <p>Se mi segui su Instagram lo sai già: questo è il post che mi ha fatto esplodere il profilo. 291 like, il mio record. E non perché la foto fosse perfetta, ma perché <strong>il Lago di Pilato è uno di quei posti che ti entrano dentro e non se ne vanno più.</strong></p>
+            <p>È l'<strong>unico lago naturale delle Marche</strong>. Hai capito bene: in tutta la regione, di laghi naturali veri, ne esiste uno solo. E sta quassù, a 1.941 metri, incastonato in una conca glaciale sotto la cima del Monte Vettore, nel cuore del Parco Nazionale dei Monti Sibillini.</p>
+            <p>Per arrivarci non c'è seggiovia, non c'è scorciatoia, non c'è parcheggio comodo. Ci arrivi con le tue gambe, dopo quasi 6 ore di cammino tra pietra, vento e — se vai a inizio estate — neve residua che ti costringe a cercare la traccia. E forse è proprio per questo che, quando finalmente te lo trovi davanti, quel blu ti sembra un miracolo.</p>
+        </section>
+
+        <div class="tech-card">
+            <h3>📋 Scheda Tecnica</h3>
+            <div class="tech-item"><span class="tech-label">📍 Dove</span><span class="tech-value">Monti Sibillini, Parco Nazionale (confine Marche/Umbria)</span></div>
+            <div class="tech-item"><span class="tech-label">🚗 Partenza</span><span class="tech-value">Forca di Presta (Montemonaco, AP) ~1.535 m</span></div>
+            <div class="tech-item"><span class="tech-label">🥾 Percorso</span><span class="tech-value">Forca di Presta → Rif. Zilioli → Lago di Pilato (A/R)</span></div>
+            <div class="tech-item"><span class="tech-label">📏 Distanza</span><span class="tech-value">~9,5 km andata e ritorno</span></div>
+            <div class="tech-item"><span class="tech-label">⏱️ Tempo</span><span class="tech-value">quasi 6 ore (soste escluse)</span></div>
+            <div class="tech-item"><span class="tech-label">📈 Dislivello</span><span class="tech-value">+700 m circa (con saliscendi)</span></div>
+            <div class="tech-item"><span class="tech-label">🎯 Difficoltà</span><span class="tech-value">E (EE con neve residua a inizio estate)</span></div>
+            <div class="tech-item"><span class="tech-label">🏔️ Quota lago</span><span class="tech-value">1.941 m</span></div>
+            <div class="tech-item"><span class="tech-label">💶 Costo</span><span class="tech-value" style="color: var(--accent);">GRATIS</span></div>
+            <div class="tech-item"><span class="tech-label">🐕 Cani</span><span class="tech-value">Sì, al guinzaglio (sei in Parco Nazionale)</span></div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">La leggenda: Ponzio Pilato e i bufali imbizzarriti</h2>
+            <p>Il nome non è un caso, e la storia che ci sta dietro è una di quelle che i nonni dei Sibillini raccontavano sottovoce, accanto al fuoco.</p>
+            <p>Si narra che il corpo di <strong>Ponzio Pilato</strong> — il governatore romano che condannò Cristo — fosse stato caricato su un carro trainato da <strong>bufali imbizzarriti</strong>, lasciati liberi di vagare senza guida. Dove si fossero fermati, lì sarebbe stato gettato il corpo, e quel luogo sarebbe diventato maledetto.</p>
+            <p>I bufali corsero fino a quassù, nella conca sotto il Vettore, e si fermarono. Il corpo di Pilato fu gettato nelle acque del lago. Da allora, quelle acque furono considerate <strong>sacre e misteriose</strong>, abitate dal demonio, e per secoli nessuno osava avvicinarsi.</p>
+            <p>Leggenda? Forse. Ma quando sei lì, col vento che fischia tra le rocce e l'acqua di un blu quasi innaturale davanti a te, ti accorgi che <strong>un po' ci credi anche tu</strong>. C'è qualcosa, in questo lago, che sa di antico e di proibito.</p>
+        </section>
+
+        <div class="callout">
+            <strong>🐉 Lo sapevi?</strong> Nel Medioevo il Lago di Pilato era considerato un <strong>lago diabolico</strong>: si diceva che i negromanti vi salissero di notte per evocare spiriti e fare i loro riti. La cosa preoccupò talmente tanto le autorità che nel <strong>1500 il Comune di Norcia fece costruire un muro</strong> per sbarrarne l'accesso e "prosciugarlo" in parte, pur di esorcizzarlo. Del muro oggi restano solo tracce, ma la fama sinistra del lago è arrivata intatta fino a noi.
+        </div>
+
+        <div class="callout">
+            <strong>🔬 La vera magia (quella scientifica):</strong> dentro queste acque vive una creatura che non esiste in nessun'altra parte del mondo: il <strong>chirocefalo del Marchesoni</strong> (<em>Chirocephalus marchesonii</em>), un minuscolo crostaceo rosso che nuota a pancia in su. È un <strong>endemismo assoluto</strong>: se il Lago di Pilato sparisse, sparirebbe anche lui. È per questo che il lago è una riserva protetta, e va trattato con il rispetto che si deve a un piccolo pezzo di mondo unico.
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Il mio trekking: da Forca di Presta al blu</h2>
+            <p>Ho parcheggiato a <strong>Forca di Presta</strong>, nel comune di Montemonaco, sul versante marchigiano. È uno degli accessi classici al Vettore, e da qui parte il sentiero che porta al lago. L'aria è già frizzante, anche se è estate: quassù il tempo fa quello che vuole.</p>
+            <p>La prima parte sale decisa verso la <strong>Forca del Presto</strong> e il <strong>Rifugio Zilioli</strong>, a oltre 2.200 metri. È qui che le gambe iniziano a bruciare e il fiato si fa corto: sei sopra la linea degli alberi, esposto al vento, con la pietraia sotto i piedi e il Vettore che ti guarda dall'alto. Se parti a inizio stagione, come ho fatto io, ti trovi anche la <strong>neve residua</strong> che copre la traccia: bisogna saper leggere il terreno, o seguire le tracce di chi è passato prima.</p>
+            <p>Poi, dalla forca, si scende leggermente verso la conca. E lì lo vedi.</p>
+            <p>Il Lago di Pilato non è grande. A volte, a fine estate, si riduce a due specchi d'acqua separati da una lingua di terra — e dicono che la forma ricordi un paio di occhiali. Ma il colore... <strong>quel blu, quel turchese che cambia con la luce</strong>, incorniciato dalle ghiaie chiare e dalle pareti del Vettore, è una cosa che le foto non rendono mai fino in fondo. Devi esserci.</p>
+            <p>Sono rimasto seduto su un masso per un tempo che non so misurare. 9,56 km e quasi 6 ore di cammino, e in quel momento ho pensato la solita cosa: <strong>"Cristo, stà pagat ogni singolo passo."</strong></p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🗺️ Come arrivare</h2>
+            <p>Il punto di partenza più comodo è <strong>Forca di Presta</strong>, raggiungibile in auto da <strong>Montemonaco</strong> (provincia di Ascoli Piceno). Da Ascoli sono circa 50-60 minuti di strada, gli ultimi tratti in salita tra curve e panorami che già da soli valgono il viaggio.</p>
+            <p>A Forca di Presta c'è un ampio <strong>parcheggio gratuito</strong> e un rifugio/ristoro dove, al ritorno, una birra o un piatto caldo te li sei guadagnati sul serio. In alta stagione il parcheggio si riempie presto: se vuoi partire con calma e trovare posto, <strong>arriva al mattino presto</strong>.</p>
+            <p><strong>Alternativa umbra:</strong> il lago si può raggiungere anche da Castelluccio di Norcia / Forca di Gualdo, sul versante umbro. È un percorso diverso e altrettanto bello, ma più lungo: per una prima volta, il versante marchigiano da Forca di Presta è il più diretto.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🎒 Cosa portare</h2>
+            <ul class="tips-list">
+                <li><strong>Scarponi da trekking veri</strong> — c'è pietraia, ghiaia e, a inizio estate, neve: le scarpe da ginnastica qui sono un rischio</li>
+                <li><strong>Acqua: almeno 2 litri</strong> — non ci sono fontane lungo il percorso, portati tutto da casa</li>
+                <li><strong>Pranzo al sacco</strong> — al lago ti fermi, e mangiare con quel blu davanti è parte dell'esperienza</li>
+                <li><strong>Giacca a vento e uno strato caldo</strong> — in quota il vento è freddo anche ad agosto, e il tempo cambia in fretta</li>
+                <li><strong>Crema solare, cappello, occhiali</strong> — sei esposto, senza un albero che ti ripari, per gran parte del cammino</li>
+                <li><strong>Bastoncini</strong> — ti salvano le ginocchia, soprattutto in discesa sulla pietraia</li>
+                <li><strong>Mappa offline o GPS</strong> — con la neve residua la traccia può sparire: meglio non affidarsi solo alla vista</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">📅 Quando andare</h2>
+            <p>Il periodo migliore va da <strong>giugno a settembre</strong>. A inizio estate (giugno-luglio) trovi ancora <strong>neve residua</strong> e il lago è al massimo della sua forma, pieno e di un blu intenso: è il momento più spettacolare, ma anche quello che richiede più attenzione sulla traccia.</p>
+            <p>A fine estate il livello scende e il lago può dividersi in due specchi, ma il cammino è più semplice e le giornate sono ancora lunghe. In autunno i colori della conca diventano pazzeschi, ma il freddo e il vento si fanno sentire sul serio.</p>
+            <p><strong>Evita i temporali:</strong> quassù, sopra la linea degli alberi e senza ripari, un temporale estivo è pericoloso. Controlla il meteo con cura e, se vedi nuvole nere salire, non insistere: il Vettore non scappa, ci torni.</p>
+        </section>
+
+        <div class="warning">
+            <strong>⚠️ Rispetto e regole del Parco</strong>
+            Sei dentro il Parco Nazionale dei Monti Sibillini e davanti a una riserva delicatissima. <strong>Non bagnarti nel lago e non avvicinarti troppo alle rive:</strong> è l'habitat del chirocefalo del Marchesoni, e ogni disturbo conta. Non lasciare rifiuti (porta via tutto, anche le bucce), non uscire dai sentieri, non raccogliere nulla. I cani sono ammessi ma <strong>sempre al guinzaglio</strong>. Questo posto è un privilegio, e i privilegi vanno meritati con il rispetto. Lascia solo impronte, porta via solo ricordi — e quel blu negli occhi.
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Perché "Stà Pagat..."?</h2>
+            <p>Perché il Lago di Pilato è la sintesi perfetta di tutto quello che questo blog vuole raccontare.</p>
+            <p><strong>Stà pagat</strong> la sveglia prima dell'alba per arrivare a Forca di Presta col parcheggio vuoto. <strong>Stà pagat</strong> il fiatone sulla salita alla Forca del Presto, col vento che ti spinge indietro. <strong>Stà pagat</strong> la neve residua che ti costringe a cercare la traccia passo dopo passo. <strong>Stà pagat</strong> le gambe che tremano al ritorno.</p>
+            <p>Perché quando sei lì, a 1.941 metri, davanti all'unico lago naturale delle Marche, con la leggenda di Ponzio Pilato che ti ronza in testa e un esserino rosso che vive solo in quell'acqua... capisci che <strong>la magia non sta dall'altra parte del mondo. A volte sta a un'ora di macchina da casa tua</strong>, basta avere la voglia di salire a prendersela.</p>
+            <p>E quando torni giù, con le scarpe piene di ghiaia e il cuore pieno di blu, pensi la solita cosa: <strong>"Ok, stà pagat. E lo rifarei altre mille volte."</strong></p>
+        </section>
+
+        <div class="callout">
+            <strong>🥾 A presto su un sentiero,</strong><br>Walter<br><br>
+            <em>Se ci sei stato anche tu, o se questo racconto ti ha fatto venire voglia di salire, fammelo sapere su Instagram @walter.outdoor. E ricordati: quassù si va in punta di piedi. Il Lago di Pilato ci presta la sua bellezza, e noi gli dobbiamo rispetto.</em>
+        </div>
+
+        <a href="index.html" class="back-link">← Torna alla Home</a>
+
+        <footer>
+            <p>© 2026 Stà Pagat... · Fatto con le scarpe consumate e pochi soldi in tasca.</p>
+        </footer>
+
+    </main>
+</body>
+</html>
