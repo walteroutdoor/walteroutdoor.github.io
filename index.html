@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stà Pagat... - Viaggi e natura a passo lento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- STILE GENERALE (Dark & Elegant) --- */
+        :root {
+            --bg-main: #121212;
+            --bg-sidebar: #0a0a0a;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #d4a373; /* Colore oro/terra */
+            --accent-hover: #b58b5e;
+            --border: #333333;
+            --accent-blue: #4a90a4; /* Blu per i viaggi */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        a:hover { color: var(--accent); }
+
+        /* --- SIDEBAR (Menu laterale) --- */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .sidebar p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .nav-links { list-style: none; }
+        .nav-links li { margin-bottom: 1rem; }
+        .nav-links a {
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- CONTENUTO PRINCIPALE --- */
+        .main-content {
+            margin-left: 250px;
+            padding: 3rem 4rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span { color: var(--accent); font-style: italic; }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .btn:hover { background-color: var(--accent-hover); color: #000; }
+
+        /* Sezioni */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        .section-title.travels {
+            border-left-color: var(--accent-blue);
+        }
+
+        .article-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .article-card.travel-card:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .article-tag {
+            background-color: rgba(212, 163, 115, 0.2);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .article-tag.travel-tag {
+            background-color: rgba(74, 144, 164, 0.2);
+            color: var(--accent-blue);
+        }
+
+        .article-card h3 {
+            font-size: 1.8rem;
+            margin: 1rem 0;
+        }
+
+        .article-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .article-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .read-more {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .read-more.travel-link {
+            color: var(--accent-blue);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive per cellulari */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 1.5rem; }
+            .main-content { margin-left: 0; padding: 2rem 1.5rem; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENU LATERALE -->
+    <nav class="sidebar">
+        <h2>Stà Pagat...</h2>
+        <p>Viaggi e natura a passo lento</p>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="chi-sono.html">👤 Chi Sono</a></li>
+            <li><a href="antermoia.html">🏔️ Lago di Antermoia</a></li>
+            <li><a href="budapest.html">️ Budapest 2026</a></li>
+            <li><a href="#">📸 Instagram</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENUTO PRINCIPALE -->
+    <main class="main-content">
+        
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <h1>Benvenuto su <span>Stà Pagat...</span></h1>
+            <p>Il diario di chi sceglie la lentezza, la fatica e l'Italia più vera. Escursioni, trekking e viaggi a passo lento, raccontati per quello che sono.</p>
+            <a href="#racconti" class="btn">Esplora i contenuti</a>
+        </section>
+
+        <!-- RACCONTI DI TREKKING -->
+        <section id="racconti">
+            <h2 class="section-title">🏔️ Racconti di Trekking</h2>
+
+            <!-- Card Articolo 1 -->
+            <article class="article-card">
+                <span class="article-tag">Dolomiti · Trentino</span>
+                <h3>Lago di Antermoia: l'anello delle Dolomiti che ti fa dire "Stà Pagat..."</h3>
+                <p>Dalla seggiovia Ciampedie al cuore del Catinaccio, fino alla discesa nella selvaggia Val Duron. Il trekking che mi ha rubato il cuore.</p>
+                <a href="antermoia.html" class="read-more">LEGGI L'ARTICOLO →</a>
+            </article>
+
+            <!-- Card Articolo 2 (Placeholder) -->
+            <article class="article-card" style="opacity: 0.6;">
+                <span class="article-tag">Monti Sibillini · Marche</span>
+                <h3>Il Lago di Pilato: il gioiello nascosto dei Sibillini</h3>
+                <p>Prossimamente...</p>
+                <span class="read-more">IN ARRIVO</span>
+            </article>
+        </section>
+
+        <!-- VIAGGI -->
+        <section id="viaggi" style="margin-top: 4rem;">
+            <h2 class="section-title travels">✈️ Prossimi Viaggi</h2>
+
+            <!-- Card Viaggio Budapest -->
+            <article class="article-card travel-card">
+                <span class="article-tag travel-tag">Ungheria · Agosto 2026</span>
+                <div class="article-date">📅 10-13 Agosto 2026</div>
+                <h3>Budapest: la Perla del Danubio</h3>
+                <p>Quattro giorni tra terme, ruin bar, cupole dorate e ponti sul Danubio. Un itinerario completo tra Buda e Pest, con free tour, terme Paskál e Széchenyi, e il Parlamento ungherese.</p>
+                <a href="budapest.html" class="read-more travel-link">SCOPRI L'ITINERARIO →</a>
+            </article>
+
+            <!-- Card Viaggio Futuro (Placeholder) -->
+            <article class="article-card travel-card" style="opacity: 0.6;">
+                <span class="article-tag travel-tag">In arrivo...</span>
+                <h3>Prossima destinazione</h3>
+                <p>Stiamo pianificando la prossima avventura...</p>
+                <span class="read-more travel-link">RESTA SINTONIZZATO</span>
+            </article>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>© 2025 Stà Pagat... · Fatto con le scarpe consumate e pochi soldi in tasca.</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>
