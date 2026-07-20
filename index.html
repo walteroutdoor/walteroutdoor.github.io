@@ -8,17 +8,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- STILE GENERALE (Dark & Elegant) --- */
         :root {
             --bg-main: #121212;
             --bg-sidebar: #0a0a0a;
             --bg-card: #1e1e1e;
             --text-main: #e0e0e0;
             --text-muted: #a0a0a0;
-            --accent: #d4a373; /* Colore oro/terra */
+            --accent: #d4a373;
             --accent-hover: #b58b5e;
             --border: #333333;
-            --accent-blue: #4a90a4; /* Blu per i viaggi */
+            --accent-blue: #4a90a4;
+            --accent-ig: #e1306c;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,7 +40,7 @@
         a { text-decoration: none; color: inherit; transition: color 0.3s; }
         a:hover { color: var(--accent); }
 
-        /* --- SIDEBAR (Menu laterale) --- */
+        /* SIDEBAR */
         .sidebar {
             width: 250px;
             height: 100vh;
@@ -51,30 +51,13 @@
             display: flex;
             flex-direction: column;
         }
-
-        .sidebar h2 {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            font-style: italic;
-        }
-
-        .sidebar p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
+        .sidebar h2 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; font-style: italic; }
+        .sidebar p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
         .nav-links { list-style: none; }
         .nav-links li { margin-bottom: 1rem; }
-        .nav-links a {
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .nav-links a { font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
 
-        /* --- CONTENUTO PRINCIPALE --- */
+        /* MAIN */
         .main-content {
             margin-left: 250px;
             padding: 3rem 4rem;
@@ -82,27 +65,11 @@
             width: 100%;
         }
 
-        /* Hero Section */
-        .hero {
-            margin-bottom: 4rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 3rem;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
+        /* HERO */
+        .hero { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 3rem; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 1rem; }
         .hero h1 span { color: var(--accent); font-style: italic; }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
 
         .btn {
             display: inline-block;
@@ -115,17 +82,15 @@
         }
         .btn:hover { background-color: var(--accent-hover); color: #000; }
 
-        /* Sezioni */
+        /* SEZIONI */
         .section-title {
             font-size: 2rem;
             margin-bottom: 2rem;
             border-left: 4px solid var(--accent);
             padding-left: 1rem;
         }
-
-        .section-title.travels {
-            border-left-color: var(--accent-blue);
-        }
+        .section-title.travels { border-left-color: var(--accent-blue); }
+        .section-title.instagram { border-left-color: var(--accent-ig); }
 
         .article-card {
             background-color: var(--bg-card);
@@ -135,15 +100,8 @@
             margin-bottom: 2rem;
             transition: transform 0.3s, border-color 0.3s;
         }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .article-card.travel-card:hover {
-            border-color: var(--accent-blue);
-        }
+        .article-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .article-card.travel-card:hover { border-color: var(--accent-blue); }
 
         .article-tag {
             background-color: rgba(212, 163, 115, 0.2);
@@ -155,40 +113,28 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+        .article-tag.travel-tag { background-color: rgba(74, 144, 164, 0.2); color: var(--accent-blue); }
 
-        .article-tag.travel-tag {
-            background-color: rgba(74, 144, 164, 0.2);
-            color: var(--accent-blue);
+        .article-card h3 { font-size: 1.8rem; margin: 1rem 0; }
+        .article-card p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .article-date { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; font-style: italic; }
+
+        .read-more { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+        .read-more.travel-link { color: var(--accent-blue); }
+
+        /* INSTAGRAM WIDGET */
+        .ig-intro { color: var(--text-muted); margin-bottom: 1.5rem; max-width: 650px; }
+        .ig-intro strong { color: var(--accent); }
+        .ig-wrap {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem;
+            overflow: hidden;
         }
+        .ig-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; font-style: italic; }
 
-        .article-card h3 {
-            font-size: 1.8rem;
-            margin: 1rem 0;
-        }
-
-        .article-card p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .article-date {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .read-more {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .read-more.travel-link {
-            color: var(--accent-blue);
-        }
-
-        /* Footer */
+        /* FOOTER */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -198,7 +144,7 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive per cellulari */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; padding: 1.5rem; }
@@ -217,15 +163,16 @@
             <li><a href="index.html">🏠 Home</a></li>
             <li><a href="chi-sono.html">👤 Chi Sono</a></li>
             <li><a href="antermoia.html">🏔️ Lago di Antermoia</a></li>
-            <li><a href="budapest.html">️ Budapest 2026</a></li>
-            <li><a href="#">📸 Instagram</a></li>
+            <li><a href="lu-vurghe.html">💧 Lu Vurghe</a></li>
+            <li><a href="budapest.html">✈️ Budapest 2026</a></li>
+            <li><a href="https://instagram.com/walter.outdoor" target="_blank">📸 Instagram</a></li>
         </ul>
     </nav>
 
     <!-- CONTENUTO PRINCIPALE -->
     <main class="main-content">
         
-        <!-- HERO SECTION -->
+        <!-- HERO -->
         <section class="hero">
             <h1>Benvenuto su <span>Stà Pagat...</span></h1>
             <p>Il diario di chi sceglie la lentezza, la fatica e l'Italia più vera. Escursioni, trekking e viaggi a passo lento, raccontati per quello che sono.</p>
@@ -236,7 +183,6 @@
         <section id="racconti">
             <h2 class="section-title">🏔️ Racconti di Trekking</h2>
 
-            <!-- Card Articolo 1 -->
             <article class="article-card">
                 <span class="article-tag">Dolomiti · Trentino</span>
                 <h3>Lago di Antermoia: l'anello delle Dolomiti che ti fa dire "Stà Pagat..."</h3>
@@ -244,7 +190,6 @@
                 <a href="antermoia.html" class="read-more">LEGGI L'ARTICOLO →</a>
             </article>
 
-            <!-- Card Articolo 2 (Placeholder) -->
             <article class="article-card" style="opacity: 0.6;">
                 <span class="article-tag">Monti Sibillini · Marche</span>
                 <h3>Il Lago di Pilato: il gioiello nascosto dei Sibillini</h3>
@@ -257,7 +202,6 @@
         <section id="viaggi" style="margin-top: 4rem;">
             <h2 class="section-title travels">✈️ Prossimi Viaggi</h2>
 
-            <!-- Card Viaggio Budapest -->
             <article class="article-card travel-card">
                 <span class="article-tag travel-tag">Ungheria · Agosto 2026</span>
                 <div class="article-date">📅 10-13 Agosto 2026</div>
@@ -266,7 +210,6 @@
                 <a href="budapest.html" class="read-more travel-link">SCOPRI L'ITINERARIO →</a>
             </article>
 
-            <!-- Card Viaggio Futuro (Placeholder) -->
             <article class="article-card travel-card" style="opacity: 0.6;">
                 <span class="article-tag travel-tag">In arrivo...</span>
                 <h3>Prossima destinazione</h3>
@@ -275,9 +218,25 @@
             </article>
         </section>
 
+        <!-- INSTAGRAM -->
+        <section id="instagram" style="margin-top: 4rem;">
+            <h2 class="section-title instagram">📸 Seguimi su Instagram</h2>
+            <p class="ig-intro">Le ultime avventure in tempo reale, dritte dal mio profilo. Ogni foto è un sentiero, un tramonto, un borgo dimenticato. Seguimi su <strong>@walter.outdoor</strong> per non perderti nulla.</p>
+
+            <div class="ig-wrap">
+                <!-- SnapWidget -->
+                <script src="https://snapwidget.com/js/snapwidget.js"></script>
+                <iframe src="https://snapwidget.com/embed/1127378" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%;" title="Posts from Instagram"></iframe>
+            </div>
+
+            <p class="ig-note">La griglia si aggiorna da sola quando pubblichi nuove foto su Instagram. ✨</p>
+
+            <a href="https://instagram.com/walter.outdoor" target="_blank" class="btn" style="margin-top: 1rem;">Seguimi su Instagram →</a>
+        </section>
+
         <!-- FOOTER -->
         <footer>
-            <p>© 2025 Stà Pagat... · Fatto con le scarpe consumate e pochi soldi in tasca.</p>
+            <p>© 2026 Stà Pagat... · Fatto con le scarpe consumate e pochi soldi in tasca.</p>
         </footer>
 
     </main>
