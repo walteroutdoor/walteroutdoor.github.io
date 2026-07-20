@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lu Vurghe — La SPA dei Romani nascosta nel Tronto | Stà Pagat...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #121212; --bg-sidebar: #0a0a0a; --bg-card: #1e1e1e;
+            --text-main: #e0e0e0; --text-muted: #a0a0a0;
+            --accent: #d4a373; --accent-hover: #b58b5e; --border: #333333;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.7; display: flex; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; color: #ffffff; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        a:hover { color: var(--accent); }
+
+        .sidebar { width: 250px; height: 100vh; background-color: var(--bg-sidebar); border-right: 1px solid var(--border); position: fixed; padding: 2rem 1.5rem; display: flex; flex-direction: column; }
+        .sidebar h2 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; font-style: italic; }
+        .sidebar p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .nav-links { list-style: none; }
+        .nav-links li { margin-bottom: 1rem; }
+        .nav-links a { font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+
+        .main-content { margin-left: 250px; padding: 3rem 4rem; max-width: 900px; width: 100%; }
+
+        .hero { margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 3rem; }
+        .hero-tag { display: inline-block; background-color: rgba(212,163,115,0.2); color: var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+        .hero h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 1rem; }
+        .hero h1 span { color: var(--accent); font-style: italic; }
+        .hero-subtitle { font-size: 1.3rem; color: var(--text-muted); max-width: 700px; font-style: italic; }
+
+        .photo-placeholder { width: 100%; height: 360px; border: 2px dashed var(--border); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); margin-bottom: 2.5rem; background-color: var(--bg-card); text-align: center; padding: 1rem; }
+        .photo-placeholder .emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+        .section { margin-bottom: 3rem; }
+        .section-title { font-size: 2rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent); padding-left: 1rem; }
+        .section p { color: var(--text-main); margin-bottom: 1.2rem; font-size: 1.05rem; }
+        .section p strong { color: var(--accent); }
+
+        .tech-card { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; margin-bottom: 3rem; }
+        .tech-card h3 { color: var(--accent); margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .tech-item { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px dashed var(--border); gap: 1rem; }
+        .tech-item:last-child { border-bottom: none; }
+        .tech-label { color: var(--text-muted); font-size: 0.95rem; }
+        .tech-value { color: #ffffff; font-weight: 600; text-align: right; }
+
+        .callout { background: linear-gradient(135deg, rgba(212,163,115,0.12), rgba(212,163,115,0.04)); border-left: 4px solid var(--accent); padding: 1.5rem 2rem; border-radius: 4px; margin: 2rem 0; font-style: italic; color: #ffffff; }
+        .callout strong { color: var(--accent); font-style: normal; }
+
+        .tips-list { list-style: none; margin-top: 1rem; }
+        .tips-list li { padding: 0.8rem 0 0.8rem 2rem; position: relative; color: var(--text-main); border-bottom: 1px solid rgba(51,51,51,0.5); }
+        .tips-list li:before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: bold; font-size: 1.2rem; }
+
+        .warning { background-color: rgba(200,50,50,0.1); border-left: 4px solid #c83232; padding: 1.5rem 2rem; border-radius: 4px; margin: 2rem 0; color: var(--text-main); }
+        .warning strong { color: #ff6b6b; display: block; margin-bottom: 0.5rem; }
+
+        .back-link { display: inline-block; color: var(--accent); font-weight: 600; margin-top: 2rem; font-size: 0.95rem; }
+
+        footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 1.5rem; }
+            .main-content { margin-left: 0; padding: 2rem 1.5rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .section-title { font-size: 1.5rem; }
+            .tech-item { flex-direction: column; gap: 0.2rem; }
+            .tech-value { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>Stà Pagat...</h2>
+        <p>Viaggi e natura a passo lento</p>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="chi-sono.html">👤 Chi Sono</a></li>
+            <li><a href="antermoia.html">🏔️ Lago di Antermoia</a></li>
+            <li><a href="lu-vurghe.html">💧 Lu Vurghe</a></li>
+            <li><a href="budapest.html">✈️ Budapest 2026</a></li>
+            <li><a href="https://instagram.com/walter.outdoor" target="_blank">📸 Instagram</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+
+        <section class="hero">
+            <span class="hero-tag">💧 Terme Naturali · Acquasanta Terme (AP)</span>
+            <h1>Lu Vurghe, <span>la SPA dei Romani</span> nascosta nelle Marche</h1>
+            <p class="hero-subtitle">Dove l'acqua sulfurea tiepida incontra il fresco del Tronto. Pozze color smeraldo, massi grandi come case, e zero euro di biglietto.</p>
+        </section>
+
+        <!-- PER METTERE LA TUA FOTO: quando avrai le foto, sostituisci il div qui sotto con:
+             <img src="images/lu-vurghe.jpg" alt="Lu Vurghe, le pozze naturali" style="width:100%; border-radius:8px; margin-bottom:2.5rem;"> -->
+        <div class="photo-placeholder">
+            <span class="emoji">💧</span>
+            <span>La tua foto di Lu Vurghe qui (es. lu-vurghe.jpg nella cartella images)</span>
+        </div>
+
+        <div class="tech-card">
+            <h3>📋 Scheda Tecnica</h3>
+            <div class="tech-item"><span class="tech-label">📍 Dove</span><span class="tech-value">Santa Maria di Acquasanta Terme (AP)</span></div>
+            <div class="tech-item"><span class="tech-label">🚗 Come arrivare</span><span class="tech-value">Auto + breve camminata</span></div>
+            <div class="tech-item"><span class="tech-label">⏱️ Tempo</span><span class="tech-value">2-4 ore (relax incluso)</span></div>
+            <div class="tech-item"><span class="tech-label">💶 Costo</span><span class="tech-value" style="color: var(--accent);">GRATIS</span></div>
+            <div class="tech-item"><span class="tech-label">🎯 Difficoltà</span><span class="tech-value">Facile (attenzione ai sassi scivolosi)</span></div>
+            <div class="tech-item"><span class="tech-label">🐕 Cani</span><span class="tech-value">Sì, benvenuti</span></div>
+            <div class="tech-item"><span class="tech-label">👶 Bambini</span><span class="tech-value">Sì, con supervisione</span></div>
+            <div class="tech-item"><span class="tech-label">🌡️ Acqua</span><span class="tech-value">Tiepida (sulfurea)</span></div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Il posto che nessuno si aspetta</h2>
+            <p>Ci sono luoghi nelle Marche che sembrano usciti da un film fantasy. Li incontri quasi per caso, seguendo una strada secondaria, un sentiero appena accennato, o le voci di paese che girano nei bar.</p>
+            <p><strong>Lu Vurghe</strong> è uno di quelli. Un nome che in dialetto ascolano significa "il gorgo", "il vortice d'acqua". E quando ci arrivi, capisci subito perché i vecchi del posto gli hanno dato questo nome.</p>
+            <p>Immagina una gola stretta, verdissima, scavata nei millenni dal fiume Tronto. Immagina l'acqua che sgorga dalla roccia a temperatura tiepida, carica di zolfo, e che si mescola con l'acqua fredda del fiume creando giochi di colore che vanno dal verde smeraldo al turchese. Immagina massi bianchi grandi come case, levigati dall'acqua, su cui sdraiarti come su un lettino naturale.</p>
+            <p>Ecco, ora immagina che questo posto <strong>non costi niente</strong>. Nessuna cassa, nessun biglietto, nessun braccialetto colorato. Solo tu, la natura, e il rumore dell'acqua.</p>
+        </section>
+
+        <div class="callout">
+            <strong>💡 Lo sapevi?</strong> Queste acque sulfuree erano già conosciute in epoca romana. I legionari di passaggio sulla <strong>Via Salaria</strong> — l'antica via del sale che collegava Roma all'Adriatico — si fermavano qui per curare le ferite e rilassare i muscoli. Stai facendo il bagno nella stessa acqua che usavano 2.000 anni fa.
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Il mio primo incontro con Lu Vurghe</h2>
+            <p>La prima volta che ci sono andato, era una domenica di giugno. Avevo passato la mattina sui Sibillini, gambe che chiedevano pietà, e cercavo un posto dove "staccare". Un ascolano DOC incontrato al bar di Acquasanta mi aveva detto: <em>"Vai giù ar Vurghe, te fa bene all'ossa"</em>.</p>
+            <p>Ho seguito le indicazioni, ho parcheggiato lungo la strada (gratuitamente, ovviamente) e ho iniziato a scendere verso il fiume. Il rumore dell'acqua si sentiva già da lontano, ma è stato quando ho superato l'ultimo tornante tra la vegetazione che ho capito di aver trovato qualcosa di speciale.</p>
+            <p>Il primo impatto è stato quasi irreale. Pozze naturali di acqua caldissima che si alternavano a specchi d'acqua fredda, cascatelle che scivolavano tra le rocce bianche, e un odore di zolfo che — ti giuro — ti entra nelle narici e ti fa capire subito che stai respirando qualcosa di <strong>vero</strong>.</p>
+            <p>Mi sono tolto le scarpe, ho immerso i piedi in una pozza tiepida, e sono rimasto lì un'ora buona a guardare il Tronto che scorreva davanti a me. Zero telefono, zero pensieri. Solo acqua, roccia e silenzio.</p>
+            <p>Stà pagat ogni minuto passato lì, perché è stato gratis in tutti i sensi: gratis il biglietto, gratis la vista, gratis la pace.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🗺️ Come arrivare</h2>
+            <p>Lu Vurghe si trova nel comune di <strong>Acquasanta Terme</strong>, in provincia di Ascoli Piceno. Da Ascoli sono circa 25-30 minuti di auto lungo la SS4 Salaria, direzione Roma.</p>
+            <p>Superata Acquasanta, devi arrivare alla frazione di <strong>Santa Maria</strong>. Da lì, segui le indicazioni (spesso improvvisate) per il fiume. Ci sono alcuni punti di accesso, ma il più classico è quello vicino al ponte: parcheggi lungo la strada e scendi a piedi per 5-10 minuti attraverso un sentiero sterrato.</p>
+            <p><strong>Consiglio:</strong> usa Google Maps cercando "Lu Vurghe Acquasanta Terme" o "Terme libere Santa Maria". Le coordinate ci sono, ma l'ultimo tratto va fatto a occhio. Chiedi ai locali, loro sanno.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🎒 Cosa portare</h2>
+            <ul class="tips-list">
+                <li><strong>Costume e telo mare</strong> — fondamentali, anche se non c'è un vero e proprio "stabilimento"</li>
+                <li><strong>Scarpe da scoglio o sandali con grip</strong> — i sassi sono scivolosi, le infradito qui non servono a nulla</li>
+                <li><strong>Acqua e pranzo al sacco</strong> — non ci sono bar nelle immediate vicinanze, porta tutto tu</li>
+                <li><strong>Sacchetto per i rifiuti</strong> — il posto è selvaggio e deve restarlo, porta via tutto quello che porti</li>
+                <li><strong>Crema solare e cappello</strong> — alcune zone sono esposte, soprattutto d'estate</li>
+                <li><strong>Maschera da snorkeling</strong> — se ce l'hai, l'acqua è limpida e vale la pena guardare sotto</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">📅 Quando andare</h2>
+            <p>Il periodo migliore va da <strong>maggio a settembre</strong>, quando le giornate sono lunghe e l'aria è calda. Giugno e luglio sono i mesi top: acqua al giusto livello, vegetazione rigogliosa, temperatura perfetta.</p>
+            <p>Dopo piogge intense, il Tronto può ingrossarsi e le pozze perdono un po' del loro fascino (e della loro sicurezza). Controlla sempre il meteo prima di partire.</p>
+            <p>In autunno e inverno il posto ha un'atmosfera completamente diversa, quasi mistica, ma l'acqua è fredda e l'accesso può essere complicato. Per i veri "wild" può valere la pena, ma non è la prima volta che te lo consiglio.</p>
+        </section>
+
+        <div class="warning">
+            <strong>⚠️ Attenzione</strong>
+            Lu Vurghe è un luogo selvaggio e NON sorvegliato. Non ci sono bagnini, non ci sono protezioni, non ci sono corrimano. L'acqua in alcuni punti può essere profonda e le rocce sono scivolose. Non andare da solo, evita tuffi azzardati, e se ci sono bambini tienili SEMPRE d'occhio. La bellezza di questo posto va rispettata, e la sicurezza viene prima di tutto.
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Perché "Stà Pagat..."?</h2>
+            <p>Perché Lu Vurghe rappresenta tutto quello che amo di questo modo di vivere la natura.</p>
+            <p><strong>Stà pagat</strong> non aver bisogno di prenotare niente. <strong>Stà pagat</strong> non dover fare la coda per entrare. <strong>Stà pagat</strong> non dover mostrare un biglietto a nessuno. <strong>Stà pagat</strong> aver trovato un pezzo di paradiso a 30 minuti da casa, senza spendere un euro.</p>
+            <p>In un mondo di resort da 300€ a notte, di terme affollate dove devi prenotare settimane prima, di piscine "instagrammabili" costruite ad arte, Lu Vurghe è la dimostrazione che <strong>le cose più belle spesso sono quelle più semplici</strong>. Quelle che i nostri nonni conoscevano, che i romani usavano, che noi abbiamo dimenticato.</p>
+            <p>E invece sono ancora lì, che ci aspettano. Basta sapere dove cercare.</p>
+        </section>
+
+        <div class="callout">
+            <strong>🥾 A presto su un sentiero,</strong><br>Walter<br><br>
+            <em>Se ci sei stato anche tu, fammelo sapere su Instagram @walter.outdoor. E se ci andrai, ricordati: lascia solo impronte, porta via solo ricordi.</em>
+        </div>
+
+        <a href="index.html" class="back-link">← Torna alla Home</a>
+
+        <footer>
+            <p>© 2026 Stà Pagat... · Fatto con le scarpe consumate e pochi soldi in tasca.</p>
+        </footer>
+
+    </main>
+</body>
+</html>
