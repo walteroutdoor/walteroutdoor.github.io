@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Sono — Walter | Stà Pagat...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #121212; --bg-sidebar: #0a0a0a; --bg-card: #1e1e1e;
+            --text-main: #e0e0e0; --text-muted: #a0a0a0;
+            --accent: #d4a373; --accent-hover: #b58b5e; --border: #333333;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.7; display: flex; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; color: #ffffff; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        a:hover { color: var(--accent); }
+
+        .sidebar { width: 250px; height: 100vh; background-color: var(--bg-sidebar); border-right: 1px solid var(--border); position: fixed; padding: 2rem 1.5rem; display: flex; flex-direction: column; }
+        .sidebar h2 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; font-style: italic; }
+        .sidebar p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .nav-links { list-style: none; }
+        .nav-links li { margin-bottom: 1rem; }
+        .nav-links a { font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+
+        .main-content { margin-left: 250px; padding: 3rem 4rem; max-width: 900px; width: 100%; }
+
+        .hero { margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 3rem; }
+        .hero h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 1rem; }
+        .hero h1 span { color: var(--accent); font-style: italic; }
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-muted); font-style: italic; max-width: 700px; }
+
+        .section { margin-bottom: 3rem; }
+        .section-title { font-size: 2rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent); padding-left: 1rem; }
+        .section p { margin-bottom: 1.2rem; font-size: 1.05rem; }
+        .section p strong { color: var(--accent); }
+
+        .photo-placeholder { width: 100%; height: 320px; border: 2px dashed var(--border); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); margin-bottom: 2rem; background-color: var(--bg-card); text-align: center; padding: 1rem; }
+        .photo-placeholder .emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+        .tips-list { list-style: none; margin-top: 1rem; }
+        .tips-list li { padding: 0.8rem 0 0.8rem 2rem; position: relative; border-bottom: 1px solid rgba(51,51,51,0.5); }
+        .tips-list li:before { content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+
+        .callout { background: linear-gradient(135deg, rgba(212,163,115,0.12), rgba(212,163,115,0.04)); border-left: 4px solid var(--accent); padding: 1.5rem 2rem; border-radius: 4px; margin: 2rem 0; color: #ffffff; }
+        .callout strong { color: var(--accent); }
+
+        .back-link { display: inline-block; color: var(--accent); font-weight: 600; margin-top: 2rem; }
+
+        footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 1.5rem; }
+            .main-content { margin-left: 0; padding: 2rem 1.5rem; }
+            .hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>Stà Pagat...</h2>
+        <p>Viaggi e natura a passo lento</p>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="chi-sono.html">👤 Chi Sono</a></li>
+            <li><a href="antermoia.html">🏔️ Lago di Antermoia</a></li>
+            <li><a href="lu-vurghe.html">💧 Lu Vurghe</a></li>
+            <li><a href="budapest.html">✈️ Budapest 2026</a></li>
+            <li><a href="https://instagram.com/walter.outdoor" target="_blank">📸 Instagram</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+
+        <section class="hero">
+            <h1>Ciao, sono <span>Walter</span></h1>
+            <p class="hero-subtitle">Vengo da Ascoli Piceno e dal post-Covid ho scoperto che la mia vera terapia non era in farmacia, ma in montagna.</p>
+        </section>
+
+        <!-- PER METTERE LA TUA FOTO: sostituisci il div qui sotto con:
+             <img src="images/walter.jpg" alt="Walter" style="width:100%; border-radius:8px; margin-bottom:2rem;"> -->
+        <div class="photo-placeholder">
+            <span class="emoji">📷</span>
+            <span>La tua foto qui (es. walter.jpg nella cartella images)</span>
+        </div>
+
+        <section class="section">
+            <p>Se sei capitato qui, probabilmente anche tu hai capito una cosa fondamentale: <strong>i posti più belli non te li regalano, te li vai a prendere.</strong></p>
+            <p>Sul mio profilo Instagram <strong>@walter.outdoor</strong> condivido scorci di Italia ripresi dal drone, sentieri nascosti e borghi dimenticati. Ma i Reel durano 30 secondi, e dietro quei 30 secondi ci sono ore di cammino, litri di sudore, sbagli, deviazioni e tanta, tanta strada.</p>
+            <p>Questo blog nasce per raccontare <strong>quello che sta dietro l'inquadratura perfetta.</strong></p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">La mia filosofia: a passo lento</h2>
+            <p>Viviamo in un mondo che corre. Io ho scelto di camminare.</p>
+            <p>Il mio modo di viaggiare è semplice: zaino in spalla, scarponi ai piedi e testa in su. Che sia un trekking di più giorni sui Monti Sibillini, un anello in bici tra i borghi ascolani o una salita alla Forca di Presta, la regola è sempre la stessa: <strong>assaporare ogni metro.</strong></p>
+            <p>Amo il drone perché mi regala occhi nuovi sulla mia terra, ma amo ancora di più il silenzio di un rifugio a 1.800 metri, il rumore dei miei passi su un sentiero di ghiaia e il sapore di una birra ghiacciata quando finalmente ti puoi sedere.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Perché "Stà Pagat..."?</h2>
+            <p>Te lo sarai chiesto. E la risposta è semplice.</p>
+            <p>Ogni volta che torno a casa dopo un'escursione, con le gambe che tremano, le vesciche che chiedono pietà e lo zaino che pesa come un macigno, c'è un momento preciso. È quel momento in cui ti guardi allo specchio, vedi i graffi, la polvere, il sole sulla faccia... e pensi: <strong>"Ok, stà pagat."</strong></p>
+            <p>Stà pagat ogni singola salita. Stà pagat la sveglia alle 5 del mattino. Stà pagat il volo low cost con tre scali. Stà pagat il freddo, la pioggia, il sentiero che sparisce.</p>
+            <p>Perché alla fine, <strong>ne è sempre valsa la pena.</strong> E voglio raccontarti perché.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Le emozioni che hanno cambiato tutto</h2>
+            <p>Ci sono tre luoghi che hanno segnato il mio cammino e che mi hanno fatto capire che non potevo più farne a meno.</p>
+            <p>Le <strong>Tre Cime di Lavaredo</strong> sono state la scintilla. Quel primo impatto con le Dolomiti, quelle guglie che sembrano scolpite nel cielo... è stato lì che ho capito: questa è la mia strada.</p>
+            <p>Ma è stato il <strong>Lago di Antermoia</strong>, lassù nel gruppo del Catinaccio, a rubarmi davvero il cuore. Quell'acqua turchese incastonata tra le rocce rosse delle Dolomiti, il silenzio irreale, la sensazione di essere in un altro mondo... lì ho pensato: "Cristo, stà pagat ogni singolo passo."</p>
+            <p>E poi c'è il <strong>Lago di Pilato</strong>, qui, a due passi da casa mia, sui nostri amati Sibillini. Sapere che tanta bellezza è così vicina, che posso tornare a respirare quell'aria quando voglio... è la mia fortuna più grande. È il promemoria che non serve andare dall'altra parte del mondo per emozionarsi. A volte, la magia è proprio dietro l'angolo.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Cosa troverai su questo blog</h2>
+            <p>Qui non troverai classifiche dei "10 posti più instagrammabili". Troverai invece:</p>
+            <ul class="tips-list">
+                <li><strong>Escursioni e Trekking</strong> raccontati per quello che sono: con il dislivello vero, i punti critici, i rifugi dove si mangia bene e quelli dove è meglio portarsi il panino da casa.</li>
+                <li><strong>Itinerari a passo lento</strong> tra i borghi del Centro Italia, con un occhio di riguardo per le mie amatissime Marche e l'Ascolano.</li>
+                <li><strong>Guide pratiche</strong> per chi vuole partire: dove parcheggiare, come organizzare le tappe, cosa mettere nello zaino.</li>
+                <li><strong>Dietro le quinte</strong> delle mie riprese col drone: i luoghi segreti, le autorizzazioni, gli imprevisti.</li>
+                <li><strong>Attrezzatura testata sul campo:</strong> ti dirò cosa funziona davvero e cosa no, senza farti perdere soldi.</li>
+            </ul>
+        </section>
+
+        <div class="callout">
+            <strong>Unisciti alla ciurma 🧭</strong><br><br>
+            Se anche tu sei uno di quelli che "stà pagat" ma non smetterebbe mai di camminare, sei nel posto giusto. Seguimi su Instagram <strong>@walter.outdoor</strong> per le pillole visual.<br><br>
+            A presto su un sentiero,<br><strong>Walter</strong>
+        </div>
+
+        <a href="index.html" class="back-link">← Torna alla Home</a>
+
+        <footer>
+            <p>© 2026 Stà Pagat... · Fatto con le scarpe consumate e pochi soldi in tasca.</p>
+        </footer>
+
+    </main>
+</body>
+</html>
