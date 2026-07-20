@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budapest 2026 — Guida di viaggio | Stà Pagat...</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#121212; --bg2:#0a0a0a; --card:#1e1e1e; --card2:#262626;
+  --text:#e8e8e8; --muted:#a0a0a0; --accent:#d4a373; --accent2:#b58b5e;
+  --border:#333; --blue:#4a90a4; --ok:#6bbf6b; --shadow:rgba(0,0,0,.45);
+}
+[data-theme="light"]{
+  --bg:#f4f1ea; --bg2:#ffffff; --card:#ffffff; --card2:#f0ece3;
+  --text:#222; --muted:#666; --accent:#a9763f; --accent2:#8a5e2c;
+  --border:#ddd; --blue:#2f6f82; --shadow:rgba(0,0,0,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;color:var(--text)}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent2)}
+::selection{background:var(--accent);color:#000}
+
+/* TOP BAR */
+.topbar{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.2rem;backdrop-filter:blur(6px)}
+.topbar .left{display:flex;align-items:center;gap:.8rem}
+.menu-btn{background:none;border:1px solid var(--border);color:var(--text);font-size:1.2rem;
+  width:40px;height:40px;border-radius:8px;cursor:pointer}
+.menu-btn:hover{border-color:var(--accent)}
+.brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.brand b{color:var(--accent)}
+.topbar .right{display:flex;align-items:center;gap:.5rem}
+.icon-btn{background:none;border:1px solid var(--border);color:var(--text);padding:.45rem .7rem;
+  border-radius:8px;cursor:pointer;font-size:.85rem}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* DRAWER */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;opacity:0;visibility:hidden;transition:.3s}
+.overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;left:0;height:100%;width:280px;max-width:85vw;background:var(--bg2);
+  border-right:1px solid var(--border);z-index:300;transform:translateX(-100%);transition:.3s;
+  padding:1.5rem 1.2rem;overflow-y:auto}
+.drawer.open{transform:translateX(0)}
+.drawer h3{color:var(--accent);font-style:italic;margin-bottom:.3rem}
+.drawer .sub{color:var(--muted);font-size:.8rem;margin-bottom:1.5rem}
+.drawer .grp{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:1rem 0 .4rem}
+.drawer a{display:block;padding:.5rem .6rem;border-radius:6px;color:var(--text);font-size:.92rem}
+.drawer a:hover{background:var(--card);color:var(--accent)}
+.drawer .back{margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1rem;color:var(--accent);font-weight:600}
+
+/* LAYOUT */
+.wrap{max-width:920px;margin:0 auto;padding:2rem 1.3rem 5rem}
+section{margin-bottom:3.5rem;scroll-margin-top:80px}
+.sec-title{font-size:1.9rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem}
+.sec-title .bar{width:4px;height:1.6rem;background:var(--accent);border-radius:2px;display:inline-block}
+.sec-sub{color:var(--muted);margin-bottom:1.6rem}
+
+/* HERO */
+.hero{text-align:center;padding:2.5rem 1rem 2rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.hero .kicker{color:var(--accent);letter-spacing:2px;font-size:.8rem;text-transform:uppercase}
+.hero h1{font-size:2.8rem;margin:.6rem 0;line-height:1.15}
+.hero h1 em{color:var(--accent);font-style:italic}
+.hero p{color:var(--muted);max-width:620px;margin:0 auto 1.8rem;font-size:1.05rem}
+.countdown{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.cd-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;min-width:74px}
+.cd-box .n{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--accent)}
+.cd-box .l{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.hero .cta{display:inline-flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;background:var(--accent);color:#000;padding:.7rem 1.3rem;border-radius:6px;font-weight:600;font-size:.9rem;border:none;cursor:pointer}
+.btn:hover{background:var(--accent2);color:#000}
+.btn.ghost{background:none;border:1px solid var(--border);color:var(--text)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* INFO GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem}
+.info-card .ic{font-size:1.5rem}
+.info-card h4{font-size:1rem;margin:.4rem 0 .3rem;color:var(--accent)}
+.info-card p{font-size:.9rem;color:var(--muted)}
+.info-card a{font-size:.8rem;display:inline-block;margin-top:.5rem}
+
+/* TIMELINE */
+.day-head{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);
+  border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1.4rem}
+.day-head .d{color:var(--accent);font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+.day-head h3{font-size:1.5rem;margin:.2rem 0}
+.day-head .maplink{font-size:.82rem}
+.tl{position:relative;padding-left:1.6rem;border-left:2px solid var(--border);margin-left:.4rem}
+.tl-item{position:relative;margin-bottom:1.4rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem}
+.tl-item::before{content:"";position:absolute;left:-2.05rem;top:1.2rem;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl-time{color:var(--accent);font-weight:700;font-size:.95rem}
+.tl-title{font-weight:600;font-size:1.05rem;margin:.1rem 0 .4rem}
+.tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.5rem}
+.tag{background:var(--card2);color:var(--muted);font-size:.7rem;padding:.15rem .55rem;border-radius:20px}
+.tl-desc{font-size:.92rem;color:var(--text)}
+.tl-photo{font-size:.85rem;color:var(--blue);margin-top:.5rem;font-style:italic}
+.tl-link{font-size:.8rem;display:inline-block;margin-top:.5rem}
+.day-nav{display:flex;justify-content:space-between;margin-top:1rem}
+.day-nav a{font-size:.85rem;font-weight:600}
+
+/* TABLE */
+.table-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.chip{background:var(--card);border:1px solid var(--border);color:var(--text);padding:.35rem .8rem;border-radius:20px;font-size:.8rem;cursor:pointer}
+.chip.active{background:var(--accent);color:#000;border-color:var(--accent)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:480px}
+th,td{padding:.7rem .9rem;text-align:left;border-bottom:1px solid var(--border)}
+th{background:var(--card2);color:var(--accent);cursor:pointer;user-select:none;white-space:nowrap}
+th:hover{color:var(--accent2)}
+th .arr{opacity:.4;font-size:.7rem}
+tbody tr:hover{background:var(--card)}
+.note{font-size:.78rem;color:var(--muted);margin-top:.6rem}
+
+/* TRANSPORT */
+.tr-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:.8rem}
+.tr-card h4{color:var(--accent);font-size:1.05rem;margin-bottom:.3rem}
+.tr-card p{font-size:.9rem;color:var(--muted)}
+
+/* BUDGET */
+.calc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-top:1.2rem;
+  display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between}
+.calc label{font-size:.9rem;color:var(--muted)}
+.calc input[type=number]{width:70px;background:var(--bg);border:1px solid var(--border);color:var(--text);
+  padding:.4rem .5rem;border-radius:6px;font-size:1rem;text-align:center}
+.calc .total{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent);font-weight:700}
+.conv{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-top:1rem}
+.conv h4{color:var(--accent);margin-bottom:.6rem;font-size:1rem}
+.conv .row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.conv input{width:110px;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:.5rem;border-radius:6px;font-size:1rem}
+.conv .out{font-weight:700;color:var(--blue);font-size:1.1rem}
+.conv small{display:block;color:var(--muted);margin-top:.5rem;font-size:.78rem}
+
+/* CHECKLIST */
+.cl-progress{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:1rem}
+.cl-bar{flex:1;height:8px;background:var(--card2);border-radius:20px;overflow:hidden}
+.cl-bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.cl-count{font-size:.85rem;color:var(--muted);white-space:nowrap}
+.cl-group{margin-bottom:1.4rem}
+.cl-group h4{color:var(--accent);font-size:1.05rem;margin-bottom:.6rem}
+.cl-item{display:flex;align-items:center;gap:.7rem;padding:.5rem .2rem;border-bottom:1px solid var(--border);cursor:pointer}
+.cl-item input{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.cl-item.done span{text-decoration:line-through;color:var(--muted)}
+
+/* WEATHER */
+.wx{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.8rem}
+.wx-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.wx-card .e{font-size:1.6rem}
+.wx-card .v{font-weight:700;font-size:1.1rem;margin:.2rem 0}
+.wx-card .l{font-size:.75rem;color:var(--muted)}
+.wx-tip{background:var(--card);border-left:4px solid var(--blue);border-radius:6px;padding:1rem 1.2rem;margin-top:1rem;font-size:.9rem}
+
+/* PHRASES */
+.ph{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.7rem}
+.ph-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem}
+.ph-card .it{font-weight:600;color:var(--text);font-size:.95rem}
+.ph-card .hu{color:var(--accent);font-size:1rem;margin:.2rem 0}
+.ph-card .pr{color:var(--muted);font-size:.78rem;font-style:italic}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 1.3rem;text-align:center;color:var(--muted);font-size:.85rem}
+footer a{color:var(--accent)}
+
+/* BACK TO BLOG (fisso) */
+#torna-blog{position:fixed;bottom:18px;right:18px;z-index:150;background:var(--accent);color:#000;
+  padding:.6rem 1.1rem;border-radius:30px;font-weight:600;font-size:.85rem;box-shadow:0 4px 14px var(--shadow)}
+#torna-blog:hover{background:var(--accent2);color:#000}
+
+/* LIGHTBOX FOTO */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:400;display:none;flex-direction:column;
+  align-items:center;justify-content:center;padding:2rem}
+.lightbox.open{display:flex}
+.lightbox .lb-head{width:100%;max-width:900px;display:flex;justify-content:space-between;align-items:center;color:#fff;margin-bottom:1rem}
+.lightbox .lb-close{background:none;border:1px solid #555;color:#fff;font-size:1.2rem;width:42px;height:42px;border-radius:8px;cursor:pointer}
+.lightbox .lb-body{max-width:900px;width:100%;text-align:center;color:var(--muted)}
+.lightbox .lb-body .ph-box{border:2px dashed #444;border-radius:12px;padding:3rem 1rem;margin-top:1rem}
+
+@media(max-width:600px){
+  .hero h1{font-size:2rem}
+  .sec-title{font-size:1.5rem}
+  .cd-box{min-width:62px;padding:.6rem .7rem}
+  .cd-box .n{font-size:1.4rem}
+}
+@media print{
+  .topbar,.drawer,.overlay,#torna-blog,.lightbox,.no-print{display:none!important}
+  body{background:#fff;color:#000}
+  .wrap{max-width:100%}
+  *{color:#000!important;border-color:#ccc!important;background:#fff!important}
+  a{text-decoration:underline}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="left">
+    <button class="menu-btn" id="menuBtn" aria-label="Apri menu">☰</button>
+    <span class="brand"><b>Budapest</b> 2026</span>
+  </div>
+  <div class="right">
+    <button class="icon-btn" id="themeBtn">🌙 Scuro</button>
+    <button class="icon-btn" id="printBtn">🖨️ Stampa</button>
+    <button class="icon-btn" id="photoBtn">📸 Foto</button>
+  </div>
+</header>
+
+<!-- DRAWER -->
+<div class="overlay" id="overlay"></div>
+<nav class="drawer" id="drawer">
+  <h3>Budapest 2026</h3>
+  <div class="sub">10–13 Agosto · Walter &amp; consorte</div>
+  <div class="grp">Panoramica</div>
+  <a href="#cover" class="dl">🏰 Copertina</a>
+  <a href="#info" class="dl">ℹ️ Informazioni utili</a>
+  <div class="grp">Itinerario</div>
+  <a href="#day1" class="dl">1️⃣ Lunedì 10/08</a>
+  <a href="#day2" class="dl">2️⃣ Martedì 11/08</a>
+  <a href="#day3" class="dl">3️⃣ Mercoledì 12/08</a>
+  <a href="#day4" class="dl">4️⃣ Giovedì 13/08</a>
+  <div class="grp">Pratico</div>
+  <a href="#restaurants" class="dl">🍽️ Ristoranti</a>
+  <a href="#transport" class="dl">🚋 Trasporti</a>
+  <a href="#budget" class="dl">💶 Budget</a>
+  <a href="#checklist" class="dl">✅ Checklist</a>
+  <a href="#weather" class="dl">☀️ Meteo</a>
+  <a href="#phrases" class="dl">💬 Frasi utili</a>
+  <a href="index.html" class="back dl">← Torna al blog</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="cover">
+    <div class="kicker">Guida di viaggio</div>
+    <h1>Budapest, <em>la Perla del Danubio</em></h1>
+    <p>Quattro giorni tra terme, ruin bar, cupole dorate e ponti sul Danubio — 10–13 Agosto 2026.</p>
+    <div class="countdown" id="countdown">
+      <div class="cd-box"><div class="n" id="cd-d">--</div><div class="l">Giorni</div></div>
+      <div class="cd-box"><div class="n" id="cd-h">--</div><div class="l">Ore</div></div>
+      <div class="cd-box"><div class="n" id="cd-m">--</div><div class="l">Minuti</div></div>
+      <div class="cd-box"><div class="n" id="cd-s">--</div><div class="l">Secondi</div></div>
+    </div>
+    <p style="font-size:.85rem">al decollo da Rimini ✈️</p>
+    <div class="cta">
+      <a href="#day1" class="btn">Vai all'itinerario</a>
+      <a href="#info" class="btn ghost">Informazioni pratiche</a>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section id="info">
+    <h2 class="sec-title"><span class="bar"></span>Prima di partire</h2>
+    <p class="sec-sub">I dati chiave del viaggio, sempre a portata di mano.</p>
+    <div class="grid">
+      <div class="info-card"><div class="ic">🏨</div><h4>Alloggio</h4><p>IntercityHotel Budapest<br>Baross Tér 7-8, vicino Keleti pályaudvar</p><a href="https://www.google.com/maps/search/?api=1&query=IntercityHotel%20Budapest%20Baross%20Ter%207-8" target="_blank">📍 Apri in Maps</a></div>
+      <div class="info-card"><div class="ic">🛫</div><h4>Volo andata</h4><p>10/08 · Wizz Air W6 2370<br>Rimini 13:25 → Budapest T2B 14:50</p></div>
+      <div class="info-card"><div class="ic">🛬</div><h4>Volo ritorno</h4><p>13/08 · FR5254<br>Budapest T2B 20:35 → Rimini 22:05</p></div>
+      <div class="info-card"><div class="ic">🚕</div><h4>Aeroporto ↔ hotel</h4><p>Bolt in entrambe le direzioni<br>~25-30 min, 20-25 € a corsa</p></div>
+      <div class="info-card"><div class="ic">🎫</div><h4>Mezzi pubblici</h4><p>Tessera turistica 72 ore<br>Attivare mar 11/08 ore 10:00 · valida fino a ven 10:00</p></div>
+      <div class="info-card"><div class="ic">🎒</div><h4>Bagagli</h4><p>1 zaino a testa<br>Check-in/check-out rapidi, nessun sovrapprezzo</p></div>
+    </div>
+  </section>
+
+  <!-- DAY 1 -->
+  <section id="day1">
+    <div class="day-head">
+      <div class="d">Giorno 1 · Lunedì 10 Agosto</div>
+      <h3>Arrivo e Pest by night</h3>
+      <a class="maplink" href="https://www.google.com/maps/dir/Budapest+Airport/IntercityHotel+Budapest/Erzsebet+ter+Budapest/Vigado+ter+Budapest" target="_blank">🗺️ Apri itinerario del giorno in Google Maps</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-time">14:50</div><div class="tl-title">Arrivo BUD Terminal 2B</div><div class="tl-tags"><span class="tag">✈️ Volo</span><span class="tag">📍 Aeroporto</span></div><div class="tl-desc">Wizz Air W6 2370 da Rimini. Ritiro bagagli (zaini, quindi rapido).</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Budapest+Airport+Terminal+2B" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">15:15</div><div class="tl-title">Bolt aeroporto → hotel</div><div class="tl-tags"><span class="tag">🚕 Trasporto</span><span class="tag">⏱️ 25-30 min</span><span class="tag">💶 20-25 €</span></div><div class="tl-desc">Prenota dall'app appena ritirati i bagagli.</div><a class="tl-link" href="https://www.google.com/maps/dir/?api=1&origin=Budapest+Airport+Terminal+2&destination=IntercityHotel+Budapest+Baross+Ter&travelmode=driving" target="_blank">🗺️ Percorso</a></div>
+      <div class="tl-item"><div class="tl-time">15:45</div><div class="tl-title">Check-in IntercityHotel Budapest</div><div class="tl-tags"><span class="tag">🏨 Alloggio</span></div><div class="tl-desc">Baross Tér 7-8. Deposito bagagli disponibile se la stanza non è pronta.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=IntercityHotel+Budapest+Baross+Ter+7-8" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">16:30</div><div class="tl-title">Passeggiata libera</div><div class="tl-tags"><span class="tag">🚶 Tempo libero</span></div><div class="tl-desc">Zona Keleti / Erzsébetváros: un caffè o merenda prima del tour.</div></div>
+      <div class="tl-item"><div class="tl-time">17:30</div><div class="tl-title">Free Tour di Budapest (Pest)</div><div class="tl-tags"><span class="tag">🚶 Tour guidato</span><span class="tag">⏱️ 2,5 ore</span><span class="tag">💶 mancia 8-10 €/pers</span></div><div class="tl-desc">Ritrovo alla Fontana Danubius, presentarsi 10 minuti prima. Tour a piedi del centro di Pest.</div><div class="tl-photo">📸 Dove fotografare: Fontana Danubius, Vaci utca, Basilica di Santo Stefano.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Danubius+Fountain+Erzsebet+ter+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">20:15</div><div class="tl-title">Cena in centro</div><div class="tl-tags"><span class="tag">🍽️ Cena</span><span class="tag">💶 15-20 €/pers</span></div><div class="tl-desc">Zona ruin bar (Kazinczy utca) o ristorante tradizionale ungherese vicino al Danubio.</div><a class="tl-link" href="#restaurants">🍽️ Vedi consigli ristoranti</a></div>
+      <div class="tl-item"><div class="tl-time">22:00</div><div class="tl-title">Crociera storica sul Danubio</div><div class="tl-tags"><span class="tag">🚤 Crociera</span><span class="tag">⏱️ 1 ora</span><span class="tag">🥂 Drink incluso</span></div><div class="tl-desc">Guida in italiano. Verificare il molo esatto sul biglietto (es. Vigadó tér). Portare una felpa, sul Danubio rinfresca.</div><div class="tl-photo">📸 Dove fotografare: Parlamento illuminato, Ponte delle Catene, Castello di Buda dal fiume.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Vigado+ter+Budapest+pier" target="_blank">📍 Apri posizione molo</a></div>
+      <div class="tl-item"><div class="tl-time">23:00</div><div class="tl-title">Bolt molo → hotel</div><div class="tl-tags"><span class="tag">🚕 Trasporto</span></div><div class="tl-desc">La tessera 72h non è ancora attiva: usare Bolt per il rientro.</div><a class="tl-link" href="https://www.google.com/maps/dir/?api=1&origin=Vigado+ter+Budapest&destination=IntercityHotel+Budapest+Baross+Ter&travelmode=driving" target="_blank">🗺️ Percorso</a></div>
+    </div>
+    <div class="day-nav"><span></span><a href="#day2">Giorno 2 →</a></div>
+  </section>
+
+  <!-- DAY 2 -->
+  <section id="day2">
+    <div class="day-head">
+      <div class="d">Giorno 2 · Martedì 11 Agosto</div>
+      <h3>Buda: castello e collina Gellért</h3>
+      <a class="maplink" href="https://www.google.com/maps/dir/IntercityHotel+Budapest/Matthias+Church+Budapest/Fishermans+Bastion+Budapest/Citadella+Gellert+Hill+Budapest" target="_blank">🗺️ Apri itinerario del giorno in Google Maps</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-title">Colazione in hotel</div><div class="tl-tags"><span class="tag">🍳 Colazione</span></div><div class="tl-desc">Partenza con calma verso il Castello di Buda.</div></div>
+      <div class="tl-item"><div class="tl-time">10:00</div><div class="tl-title">Attivazione tessera 72h + Metro M2 + Bus 16</div><div class="tl-tags"><span class="tag">🎫 Tessera trasporti</span><span class="tag">⏱️ ~20 min</span></div><div class="tl-desc">Attivare la tessera prima di salire sui mezzi: sarà valida fino a venerdì 10:00.</div><a class="tl-link" href="https://www.google.com/maps/dir/?api=1&origin=IntercityHotel+Budapest+Baross+Ter&destination=Matthias+Church+Budapest&travelmode=transit" target="_blank">🗺️ Percorso</a></div>
+      <div class="tl-item"><div class="tl-time">10:30</div><div class="tl-title">Free Tour di Buda</div><div class="tl-tags"><span class="tag">🚶 Tour guidato</span><span class="tag">⏱️ 2,5 ore</span><span class="tag">💶 mancia 8-10 €/pers</span></div><div class="tl-desc">Ritrovo Chiesa di Mattia: Bastione dei Pescatori, Castello di Buda, vicoli medievali.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Matthias+Church+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">13:00</div><div class="tl-title">Pranzo panoramico</div><div class="tl-tags"><span class="tag">🍽️ Pranzo</span><span class="tag">💶 12-18 €/pers</span></div><div class="tl-desc">Ristorante o caffè con vista sul Danubio nel quartiere del Castello.</div></div>
+      <div class="tl-item"><div class="tl-time">14:30</div><div class="tl-title">Bastione dei Pescatori</div><div class="tl-tags"><span class="tag">🏛️ Attrazione</span><span class="tag">🆓 Terrazza inferiore gratis</span></div><div class="tl-desc">Tempo libero per foto panoramiche su Pest e il Parlamento.</div><div class="tl-photo">📸 Dove fotografare: archi bianchi, vista sul Parlamento, torrette fiabesche.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Fishermans+Bastion+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">16:00</div><div class="tl-title">Collina Gellért e Cittadella</div><div class="tl-tags"><span class="tag">🥾 Panorama</span><span class="tag">⏱️ tramonto</span></div><div class="tl-desc">Salita a piedi o con i mezzi (inclusi nella tessera). Vista mozzafiato al tramonto sulla città e sul Danubio.</div><div class="tl-photo">📸 Dove fotografare: Statua della Libertà, vista sui due ponti principali al tramonto.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Citadella+Gellert+Hill+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">19:30</div><div class="tl-title">Cena tipica ungherese</div><div class="tl-tags"><span class="tag">🍽️ Cena</span><span class="tag">💶 15-22 €/pers</span></div><div class="tl-desc">Da provare: gulasch, lángos o paprikash in una taverna di Buda o Pest.</div><a class="tl-link" href="#restaurants">🍽️ Vedi consigli ristoranti</a></div>
+    </div>
+    <div class="day-nav"><a href="#day1">← Giorno 1</a><a href="#day3">Giorno 3 →</a></div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section id="day3">
+    <div class="day-head">
+      <div class="d">Giorno 3 · Mercoledì 12 Agosto</div>
+      <h3>Terme, Andrássy út e ruin bar</h3>
+      <a class="maplink" href="https://www.google.com/maps/dir/Paskal+Furdo+Budapest/Hosok+tere+Budapest/Vajdahunyad+Castle+Budapest/Szechenyi+Thermal+Bath+Budapest/Szimpla+Kert+Budapest" target="_blank">🗺️ Apri itinerario del giorno in Google Maps</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-title">Terme Paskál</div><div class="tl-tags"><span class="tag">♨️ Terme</span><span class="tag">💶 12-15 €/pers</span></div><div class="tl-desc">Egressy út 178. Metro M2 (Pillangó utca, inclusa nella tessera) + breve camminata. Portare costume, ciabatte e telo (utile un sacchetto impermeabile per il costume bagnato).</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Paskal+Furdo+Egressy+ut+178+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">12:30</div><div class="tl-title">Pranzo leggero</div><div class="tl-tags"><span class="tag">🍽️ Pranzo</span></div><div class="tl-desc">Rientro verso il centro.</div></div>
+      <div class="tl-item"><div class="tl-time">14:00</div><div class="tl-title">Andrássy út e Piazza degli Eroi</div><div class="tl-tags"><span class="tag">🚶 Passeggiata</span><span class="tag">🏛️ UNESCO</span></div><div class="tl-desc">Passeggiata sul viale patrimonio UNESCO fino a Hősök tere.</div><div class="tl-photo">📸 Dove fotografare: Monumento del Millennio, colonnato di Piazza degli Eroi.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Hosok+tere+Heroes+Square+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">15:00</div><div class="tl-title">Városliget e Castello di Vajdahunyad</div><div class="tl-tags"><span class="tag">🏰 Attrazione</span><span class="tag">🆓 Esterno gratis</span></div><div class="tl-desc">Parco cittadino con visita esterna gratuita al castello, area verde rilassante.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Vajdahunyad+Castle+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">17:00</div><div class="tl-title">Terme Széchenyi (facoltativo)</div><div class="tl-tags"><span class="tag">♨️ Terme</span><span class="tag">🏛️ Neobarocco</span></div><div class="tl-desc">Le più famose terme all'aperto di Budapest. Facoltativo: vista esterna o bagno serale, avete già fatto terme la mattina.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Szechenyi+Thermal+Bath+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">19:30</div><div class="tl-title">Cena e ruin bar serale</div><div class="tl-tags"><span class="tag">🍻 Ruin bar</span><span class="tag">💶 15-20 €/pers</span></div><div class="tl-desc">Szimpla Kert o altri ruin bar nel quartiere ebraico (Erzsébetváros).</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 Apri posizione</a></div>
+    </div>
+    <div class="day-nav"><a href="#day2">← Giorno 2</a><a href="#day4">Giorno 4 →</a></div>
+  </section>
+
+  <!-- DAY 4 -->
+  <section id="day4">
+    <div class="day-head">
+      <div class="d">Giorno 4 · Giovedì 13 Agosto</div>
+      <h3>Parlamento e rientro</h3>
+      <a class="maplink" href="https://www.google.com/maps/dir/Dohany+Street+Synagogue+Budapest/Great+Market+Hall+Budapest/Szechenyi+Chain+Bridge+Budapest/Hungarian+Parliament+Building+Budapest/Budapest+Airport" target="_blank">🗺️ Apri itinerario del giorno in Google Maps</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-title">Grande Sinagoga e Quartiere Ebraico</div><div class="tl-tags"><span class="tag">🏛️ Attrazione</span></div><div class="tl-desc">Seconda sinagoga più grande al mondo, memoriale dell'Albero della Vita.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Dohany+Street+Synagogue+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">10:30</div><div class="tl-title">Mercato Centrale Coperto</div><div class="tl-tags"><span class="tag">🛍️ Shopping</span></div><div class="tl-desc">Vásárcsarnok: souvenir, paprika, prodotti tipici, spuntino al piano superiore.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Great+Market+Hall+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">11:30</div><div class="tl-title">Ponte delle Catene</div><div class="tl-tags"><span class="tag">🌉 Icona</span></div><div class="tl-desc">Passeggiata fino al ponte iconico, foto con vista sul Castello di Buda.</div><div class="tl-photo">📸 Dove fotografare: leoni di pietra, vista sul Castello dal centro del ponte.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Szechenyi+Chain+Bridge+Budapest" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">13:00</div><div class="tl-title">Pranzo veloce</div><div class="tl-tags"><span class="tag">🍽️ Pranzo</span></div><div class="tl-desc">Zona Kossuth Lajos tér, vicino al Parlamento.</div></div>
+      <div class="tl-item"><div class="tl-time">13:20</div><div class="tl-title">Ritrovo per la visita al Parlamento</div><div class="tl-tags"><span class="tag">🛂 Sicurezza</span></div><div class="tl-desc">Presentarsi puntuali: controlli tipo aeroportuale (10-15 minuti).</div></div>
+      <div class="tl-item"><div class="tl-time">14:00</div><div class="tl-title">Visita guidata al Parlamento Ungherese</div><div class="tl-tags"><span class="tag">🏛️ Tour guidato</span><span class="tag">⏱️ 45 min</span><span class="tag">💶 ~37 €/pers</span></div><div class="tl-desc">Kossuth Lajos tér, uno dei simboli più celebri di Budapest.</div><div class="tl-photo">📸 Dove fotografare: Scalone d'onore, Sala della Cupola, Gioielli della Corona (foto vietate nella sala della Corona — verificare regole).</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Hungarian+Parliament+Building+Kossuth+Lajos+ter" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">15:30</div><div class="tl-title">Rientro in hotel e recupero bagagli</div><div class="tl-tags"><span class="tag">🎒 Bagagli</span></div><div class="tl-desc">Ultimo tratto coperto dalla tessera 72h (scade venerdì alle 10:00).</div><a class="tl-link" href="https://www.google.com/maps/dir/?api=1&origin=Hungarian+Parliament+Budapest&destination=IntercityHotel+Budapest+Baross+Ter&travelmode=transit" target="_blank">🗺️ Percorso</a></div>
+      <div class="tl-item"><div class="tl-time">17:00</div><div class="tl-title">Bolt hotel → aeroporto</div><div class="tl-tags"><span class="tag">🚕 Trasporto</span><span class="tag">⏱️ 25-30 min</span><span class="tag">💶 20-25 €</span></div><div class="tl-desc">Prenotare con margine per arrivare in aeroporto entro le 18:15.</div><a class="tl-link" href="https://www.google.com/maps/dir/?api=1&origin=IntercityHotel+Budapest+Baross+Ter&destination=Budapest+Airport+Terminal+2&travelmode=driving" target="_blank">🗺️ Percorso</a></div>
+      <div class="tl-item"><div class="tl-time">20:35</div><div class="tl-title">Volo di ritorno FR5254</div><div class="tl-tags"><span class="tag">✈️ Volo</span></div><div class="tl-desc">Budapest (BUD) → Rimini (RMI), arrivo previsto 22:05.</div></div>
+    </div>
+    <div class="day-nav"><a href="#day3">← Giorno 3</a><a href="#restaurants">Ristoranti →</a></div>
+  </section>
+
+  <!-- RISTORANTI -->
+  <section id="restaurants">
+    <h2 class="sec-title"><span class="bar"></span>Dove mangiare</h2>
+    <p class="sec-sub">Selezione per zona e fascia di prezzo. Clicca sulle intestazioni per ordinare la tabella.</p>
+    <div class="table-tools no-print" id="restFilters">
+      <button class="chip active" data-f="all">Tutti</button>
+      <button class="chip" data-f="trad">Tradizionale</button>
+      <button class="chip" data-f="ruin">Ruin bar</button>
+      <button class="chip" data-f="veloce">Veloce</button>
+    </div>
+    <div class="table-wrap">
+      <table class="sortable" id="restTable">
+        <thead><tr><th>Nome <span class="arr">↕</span></th><th>Zona <span class="arr">↕</span></th><th>Specialità <span class="arr">↕</span></th><th>Fascia <span class="arr">↕</span></th></tr></thead>
+        <tbody>
+          <tr data-cat="trad"><td>Kispiac Bisztro</td><td>Buda, quartiere Castello</td><td>Gulasch, piatti stagionali</td><td>€€</td></tr>
+          <tr data-cat="trad"><td>Rosenstein</td><td>Vicino Keleti</td><td>Cucina ungherese-ebraica</td><td>€€</td></tr>
+          <tr data-cat="ruin"><td>Szimpla Kert</td><td>Erzsébetváros</td><td>Ruin bar storico, street food</td><td>€</td></tr>
+          <tr data-cat="ruin"><td>Instant-Fogas</td><td>Erzsébetváros</td><td>Ruin bar, musica dal vivo</td><td>€</td></tr>
+          <tr data-cat="veloce"><td>Retro Lángos Büfé</td><td>Mercato Centrale</td><td>Lángos</td><td>€</td></tr>
+          <tr data-cat="trad"><td>Fisherman's Bastion Restaurant</td><td>Buda, Bastione dei Pescatori</td><td>Vista panoramica, cucina ungherese</td><td>€€€</td></tr>
+          <tr data-cat="veloce"><td>Belvárosi Disznótoros</td><td>Centro Pest</td><td>Piatti al peso, veloce e genuino</td><td>€</td></tr>
+          <tr data-cat="trad"><td>Paprika Vendéglő</td><td>Vicino Piazza degli Eroi</td><td>Paprikash, lángos</td><td>€€</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">€ fino a 10 €/persona · €€ 10-20 € · €€€ oltre 20 €. Prezzi indicativi 2026, verificare i menu aggiornati.</p>
+  </section>
+
+  <!-- TRASPORTI -->
+  <section id="transport">
+    <h2 class="sec-title"><span class="bar"></span>Come muoversi</h2>
+    <div class="tr-card"><h4>🚕 Bolt</h4><p>Usato per i trasferimenti aeroporto ↔ hotel (lunedì e giovedì) e per il rientro dalla crociera notturna di lunedì. Costo indicativo: 20-25 € a corsa, 25-30 minuti.</p></div>
+    <div class="tr-card"><h4>🎫 Tessera turistica 72 ore</h4><p>Da attivare martedì 11/08 alle 10:00. Copre metro, autobus e tram fino a venerdì alle 10:00 — tutta la parte centrale del viaggio. Costo indicativo: ~6.500 HUF (~17 €) a persona.</p></div>
+    <div class="tr-card"><h4>🚇 Metro M2</h4><p>Linea principale usata per raggiungere Buda (Chiesa di Mattia) e le Terme Paskál (Pillangó utca).</p></div>
+    <div class="tr-card"><h4>🚶 A piedi</h4><p>Il centro di Pest, il Ponte delle Catene e il quartiere del Castello si esplorano comodamente a piedi.</p></div>
+  </section>
+
+  <!-- BUDGET -->
+  <section id="budget">
+    <h2 class="sec-title"><span class="bar"></span>Quanto spenderemo</h2>
+    <p class="sec-sub">Stime indicative per le attività extra, escluse le prenotazioni già effettuate (voli, hotel) e i pasti.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Voce</th><th>A persona</th></tr></thead>
+        <tbody>
+          <tr><td>Free Tour Pest (mancia)</td><td>~9 €</td></tr>
+          <tr><td>Crociera + drink benvenuto</td><td>~22 €</td></tr>
+          <tr><td>Free Tour Buda (mancia)</td><td>~9 €</td></tr>
+          <tr><td>Terme Paskál</td><td>~13 €</td></tr>
+          <tr><td>Parlamento (tour guidato, non-UE)</td><td>~37 €</td></tr>
+          <tr><td>Tessera trasporti 72h</td><td>~17 €</td></tr>
+          <tr><td>Bolt aeroporto ↔ hotel (2 corse)</td><td style="color:var(--muted)">— (vedi nota)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="calc">
+      <div><label for="pax">Numero persone</label><br><input type="number" id="pax" value="2" min="1" max="20"></div>
+      <div style="text-align:right"><div style="font-size:.8rem;color:var(--muted)">Totale stimato attività extra</div><div class="total"><span id="tot">0</span> €</div></div>
+    </div>
+    <div class="conv">
+      <h4>Convertitore EUR → HUF</h4>
+      <div class="row">
+        <input type="number" id="eur" value="10" min="0"> <span>€</span>
+        <span style="color:var(--muted)">≈</span>
+        <span class="out"><span id="huf">0</span> Ft</span>
+      </div>
+      <small>Tasso indicativo 1€ ≈ 390 Ft — verificare il cambio reale prima di partire. (Bolt aeroporto ↔ hotel: ~20-25 € a corsa, da aggiungere a parte.)</small>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section id="checklist">
+    <h2 class="sec-title"><span class="bar"></span>Non dimenticare</h2>
+    <p class="sec-sub">Spuntando le voci, il progresso viene salvato nel browser.</p>
+    <div class="cl-progress"><div class="cl-bar"><i id="clBar"></i></div><div class="cl-count"><span id="clDone">0</span> / <span id="clTot">0</span> completati</div></div>
+    <div id="checklist-wrap">
+      <div class="cl-group"><h4>📄 Documenti</h4>
+        <label class="cl-item"><input type="checkbox" data-id="d1"><span>Carte d'identità</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="d2"><span>Carte d'imbarco</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="d3"><span>Conferme prenotazioni (hotel, tour, terme, Parlamento)</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="d4"><span>Assicurazione di viaggio</span></label>
+      </div>
+      <div class="cl-group"><h4>🎒 Da portare</h4>
+        <label class="cl-item"><input type="checkbox" data-id="p1"><span>Zaino (1 a testa)</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="p2"><span>Costume da bagno e ciabatte (terme)</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="p3"><span>Telo/asciugamano leggero</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="p4"><span>Sacchetto impermeabile per costume bagnato</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="p5"><span>Felpa leggera (crociera serale)</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="p6"><span>Scarpe comode da cammino</span></label>
+      </div>
+      <div class="cl-group"><h4>📱 App e servizi</h4>
+        <label class="cl-item"><input type="checkbox" data-id="a1"><span>App Bolt installata e con metodo di pagamento</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="a2"><span>App BKK / tessera trasporti scaricata</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="a3"><span>Mappa offline di Budapest (Google Maps)</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="a4"><span>Contanti in Fiorini (HUF) per mance e mercato</span></label>
+      </div>
+      <div class="cl-group"><h4>⏳ Ultimi giorni prima</h4>
+        <label class="cl-item"><input type="checkbox" data-id="u1"><span>Check-in online dei voli</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="u2"><span>Verificare meteo aggiornato</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="u3"><span>Caricare power bank</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="u4"><span>Avvisare la banca di eventuali pagamenti esteri</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- METEO -->
+  <section id="weather">
+    <h2 class="sec-title"><span class="bar"></span>Cosa aspettarsi</h2>
+    <p class="sec-sub">Meteo medio di Agosto — valori storici, non una previsione puntuale.</p>
+    <div class="wx">
+      <div class="wx-card"><div class="e">☀️</div><div class="v">27 °C</div><div class="l">Massima media</div></div>
+      <div class="wx-card"><div class="e">🌙</div><div class="v">16 °C</div><div class="l">Minima media</div></div>
+      <div class="wx-card"><div class="e">💧</div><div class="v">~55%</div><div class="l">Umidità media</div></div>
+      <div class="wx-card"><div class="e">🌧️</div><div class="v">6-7 gg</div><div class="l">Pioggia nel mese</div></div>
+      <div class="wx-card"><div class="e">🌅</div><div class="v">~05:50</div><div class="l">Alba indicativa</div></div>
+      <div class="wx-card"><div class="e">🌇</div><div class="v">~20:10</div><div class="l">Tramonto indicativo</div></div>
+    </div>
+    <div class="wx-tip"><strong>Consiglio:</strong> giornate calde e afose, sere più fresche vicino al Danubio — porta una felpa leggera per la crociera.</div>
+  </section>
+
+  <!-- FRASI -->
+  <section id="phrases">
+    <h2 class="sec-title"><span class="bar"></span>Un po' di ungherese</h2>
+    <p class="sec-sub">Frasi utili con pronuncia indicativa.</p>
+    <div class="ph">
+      <div class="ph-card"><div class="it">Ciao / Salve</div><div class="hu">Szia / Üdvözlöm</div><div class="pr">see-ah / ewd-vurz-lurm</div></div>
+      <div class="ph-card"><div class="it">Grazie</div><div class="hu">Köszönöm</div><div class="pr">kur-sur-nurm</div></div>
+      <div class="ph-card"><div class="it">Per favore</div><div class="hu">Kérem</div><div class="pr">keh-rem</div></div>
+      <div class="ph-card"><div class="it">Sì / No</div><div class="hu">Igen / Nem</div><div class="pr">ee-ghen / nem</div></div>
+      <div class="ph-card"><div class="it">Il conto, per favore</div><div class="hu">A számlát, kérem</div><div class="pr">ah sahm-laht keh-rem</div></div>
+      <div class="ph-card"><div class="it">Quanto costa?</div><div class="hu">Mennyibe kerül?</div><div class="pr">men-yee-beh keh-rewl</div></div>
+      <div class="ph-card"><div class="it">Dov'è la metro?</div><div class="hu">Hol van a metró?</div><div class="pr">hol van ah met-roh</div></div>
+      <div class="ph-card"><div class="it">Un tavolo per due</div><div class="hu">Egy asztalt kettőnek</div><div class="pr">edge ah-stalt ket-ur-nek</div></div>
+      <div class="ph-card"><div class="it">Non parlo ungherese</div><div class="hu">Nem beszélek magyarul</div><div class="pr">nem bes-eh-lek mad-yar-ul</div></div>
+      <div class="ph-card"><div class="it">Aiuto!</div><div class="hu">Segítség!</div><div class="pr">sheh-geet-shayg</div></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Guida creata per il viaggio a Budapest, 10–13 Agosto 2026 · <strong>Jó utat!</strong> (Buon viaggio!)<br>
+  <a href="index.html">← Torna al blog Stà Pagat...</a>
+</footer>
+
+<a id="torna-blog" href="index.html">← Torna al blog</a>
+
+<!-- LIGHTBOX FOTO -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-head"><h3 style="color:#fff">📸 Foto del viaggio</h3><button class="lb-close" id="lbClose">✕</button></div>
+  <div class="lb-body">
+    <p>Le foto del viaggio verranno caricate qui dopo il 13 agosto 2026.</p>
+    <div class="ph-box">🖼️ Spazio riservato alla galleria di Budapest<br><small>(caricheremo le foto nella cartella <code>images/budapest/</code>)</small></div>
+  </div>
+</div>
+
+<script>
+/* ===== MENU DRAWER ===== */
+const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay');
+function toggleMenu(o){drawer.classList.toggle('open',o);overlay.classList.toggle('open',o)}
+document.getElementById('menuBtn').onclick=()=>toggleMenu(!drawer.classList.contains('open'));
+overlay.onclick=()=>toggleMenu(false);
+document.querySelectorAll('.dl').forEach(a=>a.onclick=()=>toggleMenu(false));
+
+/* ===== TEMA ===== */
+const themeBtn=document.getElementById('themeBtn');
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);
+  themeBtn.textContent=t==='dark'?'🌙 Scuro':'☀️ Chiaro';
+  try{localStorage.setItem('bp-theme',t)}catch(e){}}
+let savedTheme='dark';try{savedTheme=localStorage.getItem('bp-theme')||'dark'}catch(e){}
+setTheme(savedTheme);
+themeBtn.onclick=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+
+/* ===== STAMPA ===== */
+document.getElementById('printBtn').onclick=()=>window.print();
+
+/* ===== LIGHTBOX ===== */
+const lb=document.getElementById('lightbox');
+document.getElementById('photoBtn').onclick=()=>lb.classList.add('open');
+document.getElementById('lbClose').onclick=()=>lb.classList.remove('open');
+lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};
+
+/* ===== COUNTDOWN (decollo Rimini 10/08/2026 13:25) ===== */
+const target=new Date('2026-08-10T13:25:00').getTime();
+function tick(){
+  const now=Date.now(),d=target-now;
+  if(d<=0){document.getElementById('countdown').innerHTML='<div class="cd-box" style="min-width:auto;padding:.8rem 1.4rem"><div class="n" style="font-size:1.3rem">✈️ Buon viaggio!</div></div>';return}
+  const dd=Math.floor(d/86400000),hh=Math.floor(d%86400000/3600000),mm=Math.floor(d%3600000/60000),ss=Math.floor(d%60000/1000);
+  document.getElementById('cd-d').textContent=dd;
+  document.getElementById('cd-h').textContent=String(hh).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(mm).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(ss).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+/* ===== FILTRI RISTORANTI ===== */
+document.querySelectorAll('#restFilters .chip').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#restFilters .chip').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const f=b.dataset.f;
+    document.querySelectorAll('#restTable tbody tr').forEach(tr=>{
+      tr.style.display=(f==='all'||tr.dataset.cat===f)?'':'none';
+    });
+  };
+});
+
+/* ===== TABELLE ORDINABILI ===== */
+document.querySelectorAll('table.sortable').forEach(table=>{
+  table.querySelectorAll('th').forEach((th,col)=>{
+    th.onclick=()=>{
+      const tb=table.tBodies[0],rows=[...tb.rows];
+      const asc=th.dataset.dir!=='asc';th.dataset.dir=asc?'asc':'desc';
+      rows.sort((a,b)=>{
+        let x=a.cells[col].textContent.trim(),y=b.cells[col].textContent.trim();
+        const nx=parseFloat(x),ny=parseFloat(y);
+        if(!isNaN(nx)&&!isNaN(ny))return asc?nx-ny:ny-nx;
+        return asc?x.localeCompare(y):y.localeCompare(x);
+      });
+      rows.forEach(r=>tb.appendChild(r));
+    };
+  });
+});
+
+/* ===== BUDGET CALC ===== */
+const PER_PERSON=9+22+9+13+37+17; // 107
+const pax=document.getElementById('pax'),tot=document.getElementById('tot');
+function calcTot(){tot.textContent=(PER_PERSON*Math.max(1,parseInt(pax.value)||1));}
+pax.oninput=calcTot;calcTot();
+
+/* ===== CONVERTITORE ===== */
+const eur=document.getElementById('eur'),huf=document.getElementById('huf'),RATE=390;
+function conv(){huf.textContent=Math.round((parseFloat(eur.value)||0)*RATE).toLocaleString('it-IT');}
+eur.oninput=conv;conv();
+
+/* ===== CHECKLIST PERSISTENTE ===== */
+const boxes=[...document.querySelectorAll('#checklist-wrap input[type=checkbox]')];
+const clDone=document.getElementById('clDone'),clTot=document.getElementById('clTot'),clBar=document.getElementById('clBar');
+clTot.textContent=boxes.length;
+function loadCl(){boxes.forEach(b=>{
+  let v=false;try{v=localStorage.getItem('bp-cl-'+b.dataset.id)==='1'}catch(e){}
+  b.checked=v;b.closest('.cl-item').classList.toggle('done',v);
+});updateCl();}
+function updateCl(){const n=boxes.filter(b=>b.checked).length;clDone.textContent=n;
+  clBar.style.width=(n/boxes.length*100)+'%';}
+boxes.forEach(b=>b.onchange=()=>{
+  b.closest('.cl-item').classList.toggle('done',b.checked);
+  try{localStorage.setItem('bp-cl-'+b.dataset.id,b.checked?'1':'0')}catch(e){}
+  updateCl();
+});
+loadCl();
+</script>
+</body>
+</html>
