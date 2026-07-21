@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cracovia, Auschwitz e Zakopane 2026 — Guida di viaggio | Stà Pagat...</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#121212; --bg2:#0a0a0a; --card:#1e1e1e; --card2:#262626;
+  --text:#e8e8e8; --muted:#a0a0a0; --accent:#d4a373; --accent2:#b58b5e;
+  --border:#333; --blue:#4a90a4; --ok:#6bbf6b; --shadow:rgba(0,0,0,.45);
+}
+[data-theme="light"]{
+  --bg:#f4f1ea; --bg2:#ffffff; --card:#ffffff; --card2:#f0ece3;
+  --text:#222; --muted:#666; --accent:#a9763f; --accent2:#8a5e2c;
+  --border:#ddd; --blue:#2f6f82; --shadow:rgba(0,0,0,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;color:var(--text)}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent2)}
+::selection{background:var(--accent);color:#000}
+
+/* TOP BAR */
+.topbar{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.2rem;backdrop-filter:blur(6px)}
+.topbar .left{display:flex;align-items:center;gap:.8rem}
+.menu-btn{background:none;border:1px solid var(--border);color:var(--text);font-size:1.2rem;
+  width:40px;height:40px;border-radius:8px;cursor:pointer}
+.menu-btn:hover{border-color:var(--accent)}
+.brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.brand b{color:var(--accent)}
+.topbar .right{display:flex;align-items:center;gap:.5rem}
+.icon-btn{background:none;border:1px solid var(--border);color:var(--text);padding:.45rem .7rem;
+  border-radius:8px;cursor:pointer;font-size:.85rem}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* DRAWER */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;opacity:0;visibility:hidden;transition:.3s}
+.overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;left:0;height:100%;width:280px;max-width:85vw;background:var(--bg2);
+  border-right:1px solid var(--border);z-index:300;transform:translateX(-100%);transition:.3s;
+  padding:1.5rem 1.2rem;overflow-y:auto}
+.drawer.open{transform:translateX(0)}
+.drawer h3{color:var(--accent);font-style:italic;margin-bottom:.3rem}
+.drawer .sub{color:var(--muted);font-size:.8rem;margin-bottom:1.5rem}
+.drawer .grp{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:1rem 0 .4rem}
+.drawer a{display:block;padding:.5rem .6rem;border-radius:6px;color:var(--text);font-size:.92rem}
+.drawer a:hover{background:var(--card);color:var(--accent)}
+.drawer .back{margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1rem;color:var(--accent);font-weight:600}
+
+/* LAYOUT */
+.wrap{max-width:920px;margin:0 auto;padding:2rem 1.3rem 5rem}
+section{margin-bottom:3.5rem;scroll-margin-top:80px}
+.sec-title{font-size:1.9rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem}
+.sec-title .bar{width:4px;height:1.6rem;background:var(--accent);border-radius:2px;display:inline-block}
+.sec-sub{color:var(--muted);margin-bottom:1.6rem}
+
+/* HERO */
+.hero{text-align:center;padding:2.5rem 1rem 2rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.hero .kicker{color:var(--accent);letter-spacing:2px;font-size:.8rem;text-transform:uppercase}
+.hero h1{font-size:2.8rem;margin:.6rem 0;line-height:1.15}
+.hero h1 em{color:var(--accent);font-style:italic}
+.hero p{color:var(--muted);max-width:620px;margin:0 auto 1.8rem;font-size:1.05rem}
+.countdown{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.cd-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;min-width:74px}
+.cd-box .n{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--accent)}
+.cd-box .l{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.hero .cta{display:inline-flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;background:var(--accent);color:#000;padding:.7rem 1.3rem;border-radius:6px;font-weight:600;font-size:.9rem;border:none;cursor:pointer}
+.btn:hover{background:var(--accent2);color:#000}
+.btn.ghost{background:none;border:1px solid var(--border);color:var(--text)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* INFO GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem}
+.info-card .ic{font-size:1.5rem}
+.info-card h4{font-size:1rem;margin:.4rem 0 .3rem;color:var(--accent)}
+.info-card p{font-size:.9rem;color:var(--muted)}
+.info-card a{font-size:.8rem;display:inline-block;margin-top:.5rem}
+
+/* TIMELINE */
+.day-head{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);
+  border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1.4rem}
+.day-head .d{color:var(--accent);font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+.day-head h3{font-size:1.5rem;margin:.2rem 0}
+.day-head .maplink{font-size:.82rem}
+.tl{position:relative;padding-left:1.6rem;border-left:2px solid var(--border);margin-left:.4rem}
+.tl-item{position:relative;margin-bottom:1.4rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem}
+.tl-item::before{content:"";position:absolute;left:-2.05rem;top:1.2rem;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl-time{color:var(--accent);font-weight:700;font-size:.95rem}
+.tl-title{font-weight:600;font-size:1.05rem;margin:.1rem 0 .4rem}
+.tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.5rem}
+.tag{background:var(--card2);color:var(--muted);font-size:.7rem;padding:.15rem .55rem;border-radius:20px}
+.tl-desc{font-size:.92rem;color:var(--text)}
+.tl-photo{font-size:.85rem;color:var(--blue);margin-top:.5rem;font-style:italic}
+.tl-link{font-size:.8rem;display:inline-block;margin-top:.5rem}
+.day-nav{display:flex;justify-content:space-between;margin-top:1rem}
+.day-nav a{font-size:.85rem;font-weight:600}
+
+/* TABLE */
+.table-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.chip{background:var(--card);border:1px solid var(--border);color:var(--text);padding:.35rem .8rem;border-radius:20px;font-size:.8rem;cursor:pointer}
+.chip.active{background:var(--accent);color:#000;border-color:var(--accent)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:480px}
+th,td{padding:.7rem .9rem;text-align:left;border-bottom:1px solid var(--border)}
+th{background:var(--card2);color:var(--accent);cursor:pointer;user-select:none;white-space:nowrap}
+th:hover{color:var(--accent2)}
+th .arr{opacity:.4;font-size:.7rem}
+tbody tr:hover{background:var(--card)}
+.note{font-size:.78rem;color:var(--muted);margin-top:.6rem}
+
+/* TRANSPORT */
+.tr-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:.8rem}
+.tr-card h4{color:var(--accent);font-size:1.05rem;margin-bottom:.3rem}
+.tr-card p{font-size:.9rem;color:var(--muted)}
+
+/* BUDGET */
+.calc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-top:1.2rem;
+  display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between}
+.calc label{font-size:.9rem;color:var(--muted)}
+.calc input[type=number]{width:70px;background:var(--bg);border:1px solid var(--border);color:var(--text);
+  padding:.4rem .5rem;border-radius:6px;font-size:1rem;text-align:center}
+.calc .total{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent);font-weight:700}
+.conv{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-top:1rem}
+.conv h4{color:var(--accent);margin-bottom:.6rem;font-size:1rem}
+.conv .row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.conv input{width:110px;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:.5rem;border-radius:6px;font-size:1rem}
+.conv .out{font-weight:700;color:var(--blue);font-size:1.1rem}
+.conv small{display:block;color:var(--muted);margin-top:.5rem;font-size:.78rem}
+
+/* CHECKLIST */
+.cl-progress{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:1rem}
+.cl-bar{flex:1;height:8px;background:var(--card2);border-radius:20px;overflow:hidden}
+.cl-bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.cl-count{font-size:.85rem;color:var(--muted);white-space:nowrap}
+.cl-group{margin-bottom:1.4rem}
+.cl-group h4{color:var(--accent);font-size:1.05rem;margin-bottom:.6rem}
+.cl-item{display:flex;align-items:center;gap:.7rem;padding:.5rem .2rem;border-bottom:1px solid var(--border);cursor:pointer}
+.cl-item input{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.cl-item.done span{text-decoration:line-through;color:var(--muted)}
+
+/* WEATHER */
+.wx{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.8rem}
+.wx-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.wx-card .e{font-size:1.6rem}
+.wx-card .v{font-weight:700;font-size:1.1rem;margin:.2rem 0}
+.wx-card .l{font-size:.75rem;color:var(--muted)}
+.wx-tip{background:var(--card);border-left:4px solid var(--blue);border-radius:6px;padding:1rem 1.2rem;margin-top:1rem;font-size:.9rem}
+
+/* PHRASES */
+.ph{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.7rem}
+.ph-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem}
+.ph-card .it{font-weight:600;color:var(--text);font-size:.95rem}
+.ph-card .hu{color:var(--accent);font-size:1rem;margin:.2rem 0}
+.ph-card .pr{color:var(--muted);font-size:.78rem;font-style:italic}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 1.3rem;text-align:center;color:var(--muted);font-size:.85rem}
+footer a{color:var(--accent)}
+
+/* BACK TO BLOG (fisso) */
+#torna-blog{position:fixed;bottom:18px;right:18px;z-index:150;background:var(--accent);color:#000;
+  padding:.6rem 1.1rem;border-radius:30px;font-weight:600;font-size:.85rem;box-shadow:0 4px 14px var(--shadow)}
+#torna-blog:hover{background:var(--accent2);color:#000}
+
+/* LIGHTBOX FOTO */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:400;display:none;flex-direction:column;
+  align-items:center;justify-content:center;padding:2rem}
+.lightbox.open{display:flex}
+.lightbox .lb-head{width:100%;max-width:900px;display:flex;justify-content:space-between;align-items:center;color:#fff;margin-bottom:1rem}
+.lightbox .lb-close{background:none;border:1px solid #555;color:#fff;font-size:1.2rem;width:42px;height:42px;border-radius:8px;cursor:pointer}
+.lightbox .lb-body{max-width:900px;width:100%;text-align:center;color:var(--muted)}
+.lightbox .lb-body .ph-box{border:2px dashed #444;border-radius:12px;padding:3rem 1rem;margin-top:1rem}
+
+@media(max-width:600px){
+  .hero h1{font-size:2rem}
+  .sec-title{font-size:1.5rem}
+  .cd-box{min-width:62px;padding:.6rem .7rem}
+  .cd-box .n{font-size:1.4rem}
+}
+@media print{
+  .topbar,.drawer,.overlay,#torna-blog,.lightbox,.no-print{display:none!important}
+  body{background:#fff;color:#000}
+  .wrap{max-width:100%}
+  *{color:#000!important;border-color:#ccc!important;background:#fff!important}
+  a{text-decoration:underline}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="left">
+    <button class="menu-btn" id="menuBtn" aria-label="Apri menu">☰</button>
+    <span class="brand"><b>Cracovia</b> 2026</span>
+  </div>
+  <div class="right">
+    <button class="icon-btn" id="themeBtn">🌙 Scuro</button>
+    <button class="icon-btn" id="printBtn">🖨️ Stampa</button>
+    <button class="icon-btn" id="photoBtn">📸 Foto</button>
+  </div>
+</header>
+
+<!-- DRAWER -->
+<div class="overlay" id="overlay"></div>
+<nav class="drawer" id="drawer">
+  <h3>Cracovia 2026</h3>
+  <div class="sub">29 Maggio – 2 Giugno · 4 persone</div>
+  <div class="grp">Panoramica</div>
+  <a href="#cover" class="dl">🏰 Copertina</a>
+  <a href="#info" class="dl">ℹ️ Informazioni utili</a>
+  <div class="grp">Itinerario</div>
+  <a href="#day1" class="dl">1️⃣ Ven 29/05 (Arrivo)</a>
+  <a href="#day2" class="dl">2️⃣ Sab 30/05 (Auschwitz)</a>
+  <a href="#day3" class="dl">3️⃣ Dom 31/05 (Centro)</a>
+  <a href="#day4" class="dl">4️⃣ Lun 01/06 (Zakopane)</a>
+  <a href="#day5" class="dl">5️⃣ Mar 02/06 (Rientro)</a>
+  <div class="grp">Pratico</div>
+  <a href="#restaurants" class="dl">🍽️ Ristoranti</a>
+  <a href="#transport" class="dl">🚋 Trasporti</a>
+  <a href="#budget" class="dl">💶 Budget</a>
+  <a href="#checklist" class="dl">✅ Checklist</a>
+  <a href="#weather" class="dl">☀️ Meteo</a>
+  <a href="#phrases" class="dl">💬 Frasi utili</a>
+  <a href="index.html" class="back dl">← Torna al blog</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="cover">
+    <div class="kicker">Guida di viaggio</div>
+    <h1>Cracovia, <em>tra storia e montagna</em></h1>
+    <p>Cinque giorni tra la memoria di Auschwitz, la magia sotterranea di Wieliczka, l'eleganza del centro storico e il relax delle terme di Zakopane — 29 Maggio – 2 Giugno 2026.</p>
+    <div class="countdown" id="countdown">
+      <div class="cd-box"><div class="n" id="cd-d">--</div><div class="l">Giorni</div></div>
+      <div class="cd-box"><div class="n" id="cd-h">--</div><div class="l">Ore</div></div>
+      <div class="cd-box"><div class="n" id="cd-m">--</div><div class="l">Minuti</div></div>
+      <div class="cd-box"><div class="n" id="cd-s">--</div><div class="l">Secondi</div></div>
+    </div>
+    <p style="font-size:.85rem">al decollo da Pescara ✈️</p>
+    <div class="cta">
+      <a href="#day1" class="btn">Vai all'itinerario</a>
+      <a href="#info" class="btn ghost">Informazioni pratiche</a>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section id="info">
+    <h2 class="sec-title"><span class="bar"></span>Prima di partire</h2>
+    <p class="sec-sub">I dati chiave del viaggio, sempre a portata di mano.</p>
+    <div class="grid">
+      <div class="info-card"><div class="ic">🏨</div><h4>Alloggio</h4><p>1891 Garni Hotel<br>Podbrzezie 4, Kraków (centro storico)</p><a href="https://www.google.com/maps/search/?api=1&query=1891+Garni+Hotel+Krakow" target="_blank">📍 Apri in Maps</a></div>
+      <div class="info-card"><div class="ic">🛫</div><h4>Volo andata</h4><p>29/05 · Ryanair FR7918<br>Pescara 21:05 → Cracovia 22:55</p></div>
+      <div class="info-card"><div class="ic">🛬</div><h4>Volo ritorno</h4><p>02/06 · Ryanair FR3045<br>Cracovia 17:25 → Pescara 19:10</p></div>
+      <div class="info-card"><div class="ic">🚕</div><h4>Aeroporto ↔ hotel</h4><p>Bolt in entrambe le direzioni<br>~24 min, molto economico</p></div>
+      <div class="info-card"><div class="ic">🚗</div><h4>Spostamenti</h4><p>Auto a noleggio per Zakopane<br>Autobus/Tour per Auschwitz e Wieliczka</p></div>
+      <div class="info-card"><div class="ic">🎒</div><h4>Bagagli</h4><p>Zaini o trolley compatti<br>Check-in/check-out rapidi</p></div>
+    </div>
+  </section>
+
+  <!-- DAY 1 -->
+  <section id="day1">
+    <div class="day-head">
+      <div class="d">Giorno 1 · Venerdì 29 Maggio</div>
+      <h3>Partenza e arrivo notturno</h3>
+      <a class="maplink" href="https://www.google.com/maps/dir/Pescara/Cracovia+Airport/1891+Garni+Hotel+Krakow" target="_blank">🗺️ Apri itinerario del giorno in Google Maps</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-time">18:01</div><div class="tl-title">Partenza da Pescara</div><div class="tl-tags"><span class="tag">🚗 Auto</span></div><div class="tl-desc">Viaggio in auto verso l'Aeroporto d'Abruzzo.</div></div>
+      <div class="tl-item"><div class="tl-time">21:05</div><div class="tl-title">Decollo da Pescara</div><div class="tl-tags"><span class="tag">✈️ Volo</span><span class="tag">Ryanair</span></div><div class="tl-desc">Volo diretto FR7918. Durata: 1h 50min.</div></div>
+      <div class="tl-item"><div class="tl-time">22:55</div><div class="tl-title">Atterraggio a Cracovia-Balice</div><div class="tl-tags"><span class="tag">📍 Aeroporto</span></div><div class="tl-desc">Ritiro bagagli rapido.</div></div>
+      <div class="tl-item"><div class="tl-time">23:17</div><div class="tl-title">Bolt aeroporto → 1891 Garni Hotel</div><div class="tl-tags"><span class="tag">🚕 Trasporto</span><span class="tag">⏱️ 24 min</span></div><div class="tl-desc">Soluzione più comoda ed economica per l'arrivo serale. Check-in e riposo.</div><a class="tl-link" href="https://www.google.com/maps/dir/?api=1&origin=Krakow+Airport&destination=1891+Garni+Hotel+Krakow&travelmode=driving" target="_blank">🗺️ Percorso</a></div>
+    </div>
+    <div class="day-nav"><span></span><a href="#day2">Giorno 2 →</a></div>
+  </section>
+
+  <!-- DAY 2 -->
+  <section id="day2">
+    <div class="day-head">
+      <div class="d">Giorno 2 · Sabato 30 Maggio</div>
+      <h3>Memoria e meraviglia sotterranea</h3>
+      <a class="maplink" href="https://www.google.com/maps/dir/1891+Garni+Hotel+Krakow/Auschwitz-Birkenau/Wieliczka+Salt+Mine/Kuchnia+u+Doroty+Krakow" target="_blank">🗺️ Apri itinerario del giorno in Google Maps</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-time">05:49</div><div class="tl-title">Ritrovo in Jan Matejko Square</div><div class="tl-tags"><span class="tag">🚌 Tour</span></div><div class="tl-desc">Punto di ritrovo per il bus del tour organizzato.</div></div>
+      <div class="tl-item"><div class="tl-time">07:26</div><div class="tl-title">Auschwitz-Birkenau</div><div class="tl-tags"><span class="tag">☮️ Storia</span><span class="tag">⏱️ ~4 ore</span></div><div class="tl-desc">Visita guidata in italiano. Un'esperienza che segna, un dovere storico e umano. Trasferimento incluso tra il campo principale e Birkenau.</div><div class="tl-photo">📸 Momento di riflessione e rispetto.</div></div>
+      <div class="tl-item"><div class="tl-time">13:36</div><div class="tl-title">Rientro a Cracovia e Porta di San Floriano</div><div class="tl-tags"><span class="tag">🏰 Attrazione</span></div><div class="tl-desc">Breve passaggio dall'antica porta medievale, ingresso al centro storico.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=St+Florians+Gate+Krakow" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">15:36</div><div class="tl-title">Miniera di Sale di Wieliczka</div><div class="tl-tags"><span class="tag">🧂 UNESCO</span><span class="tag">⏱️ 3 ore</span></div><div class="tl-desc">130 metri sottoterra. Camere scolpite nel sale, laghi nascosti e la spettacolare Cappella di Santa Kinga. Dopo la durezza della mattina, questo posto è quasi catartico.</div><div class="tl-photo">📸 Dove fotografare: Cappella di Santa Kinga, laghi sotterranei.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Wieliczka+Salt+Mine" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">19:34</div><div class="tl-title">Cena da Kuchnia u Doroty</div><div class="tl-tags"><span class="tag">🍽️ Cena</span><span class="tag">Tradizionale</span></div><div class="tl-desc">Cucina polacca tradizionale in via Augustiańska. Atmosfera accogliente per ricaricarsi.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Kuchnia+u+Doroty+Krakow" target="_blank">📍 Apri posizione</a></div>
+    </div>
+    <div class="day-nav"><a href="#day1">← Giorno 1</a><a href="#day3">Giorno 3 →</a></div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section id="day3">
+    <div class="day-head">
+      <div class="d">Giorno 3 · Domenica 31 Maggio</div>
+      <h3>Il cuore elegante di Cracovia</h3>
+      <a class="maplink" href="https://www.google.com/maps/dir/1891+Garni+Hotel+Krakow/Jubilat+Krakow/Wawel+Castle/Collegium+Maius/Kuchnia+u+Babci+Maliny" target="_blank">🗺️ Apri itinerario del giorno in Google Maps</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-time">08:43</div><div class="tl-title">Passeggiata nel centro storico</div><div class="tl-tags"><span class="tag">🚶 A piedi</span><span class="tag">⏱️ 4 km</span></div><div class="tl-desc">Esplorazione a piedi del centro medievale, perfettamente conservato, elegante e pulito.</div></div>
+      <div class="tl-item"><div class="tl-time">11:02</div><div class="tl-title">Shopping al JUBILAT</div><div class="tl-tags"><span class="tag">🛍️ Centro commerciale</span></div><div class="tl-desc">Breve sosta per acquisti.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Galeria+Jubilat+Krakow" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">12:47</div><div class="tl-title">Castello del Wawel</div><div class="tl-tags"><span class="tag">🏰 Attrazione</span><span class="tag">⏱️ 3+ ore</span></div><div class="tl-desc">Visita al castello reale e alla cattedrale. Cortile rinascimentale e sale storiche. Un gioiello assoluto.</div><div class="tl-photo">📸 Dove fotografare: Cortile del Wawel, vista sul fiume Vistola.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Wawel+Castle+Krakow" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">16:44</div><div class="tl-title">Collegium Maius</div><div class="tl-tags"><span class="tag">🏛️ Università</span></div><div class="tl-desc">L'edificio più antico dell'Università Jagellonica, uno dei più antichi atenei d'Europa.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Collegium+Maius+Krakow" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">18:17</div><div class="tl-title">Cena da Kuchnia u Babci Maliny</div><div class="tl-tags"><span class="tag">🍽️ Cena</span><span class="tag">Tradizionale</span></div><div class="tl-desc">Ristorante in via Sławkowska. Cucina polacca autentica e atmosfera calda.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Kuchnia+u+Babci+Maliny+Krakow" target="_blank">📍 Apri posizione</a></div>
+    </div>
+    <div class="day-nav"><a href="#day2">← Giorno 2</a><a href="#day4">Giorno 4 →</a></div>
+  </section>
+
+  <!-- DAY 4 -->
+  <section id="day4">
+    <div class="day-head">
+      <div class="d">Giorno 4 · Lunedì 1 Giugno</div>
+      <h3>Zakopane e il relax delle terme</h3>
+      <a class="maplink" href="https://www.google.com/maps/dir/1891+Garni+Hotel+Krakow/Zakopane/Chocholowskie+Termy/HEVRE+Krakow" target="_blank">🗺️ Apri itinerario del giorno in Google Maps</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-time">09:02</div><div class="tl-title">Partenza in auto per Zakopane</div><div class="tl-tags"><span class="tag">🚗 Noleggio</span><span class="tag">⏱️ ~2 ore</span></div><div class="tl-desc">Viaggio verso sud, ai piedi dei Monti Tatra. Sosta per artigianato locale a Witów.</div></div>
+      <div class="tl-item"><div class="tl-time">11:22</div><div class="tl-title">Zakopane: Góralskie Praliny</div><div class="tl-tags"><span class="tag">🍫 Dolci</span></div><div class="tl-desc">Assaggio di praline e dolci tipici montanari in via Krupówki.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Gorskie+Praliny+Zakopane" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">13:17</div><div class="tl-title">Passeggiata su Krupówki e Pranzo</div><div class="tl-tags"><span class="tag">🚶 Passeggiata</span><span class="tag">🍽️ Pranzo</span></div><div class="tl-desc">La famosa via pedonale. Pranzo alla Restauracja Góralski Browar con birra artigianale locale.</div></div>
+      <div class="tl-item"><div class="tl-time">14:36</div><div class="tl-title">Escursione e Terme di Chochołów</div><div class="tl-tags"><span class="tag">♨️ Terme</span><span class="tag">🏔️ Natura</span></div><div class="tl-desc">Breve trekking e poi relax assoluto nelle piscine termali all'aperto di Chochołowskie Termy, con vista sulle montagne. Il contrappunto perfetto ai giorni intensi.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Chocholowskie+Termy" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">19:34</div><div class="tl-title">Cena da HEVRE (Kazimierz)</div><div class="tl-tags"><span class="tag">🍽️ Cena</span><span class="tag">Quartiere Ebraico</span></div><div class="tl-desc">Rientro a Cracovia e cena nel cuore del quartiere ebraico. Atmosfera unica e moderna.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=HEVRE+Krakow" target="_blank">📍 Apri posizione</a></div>
+    </div>
+    <div class="day-nav"><a href="#day3">← Giorno 3</a><a href="#day5">Giorno 5 →</a></div>
+  </section>
+
+  <!-- DAY 5 -->
+  <section id="day5">
+    <div class="day-head">
+      <div class="d">Giorno 5 · Martedì 2 Giugno</div>
+      <h3>Ultimi scorci e rientro</h3>
+      <a class="maplink" href="https://www.google.com/maps/dir/1891+Garni+Hotel+Krakow/Skałka+Church/Pod+Wawelem+Kompania+Kuflowa/Krakow+Airport" target="_blank">🗺️ Apri itinerario del giorno in Google Maps</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-time">08:49</div><div class="tl-title">Ultima passeggiata nel centro</div><div class="tl-tags"><span class="tag">🚶 A piedi</span></div><div class="tl-desc">Godersi Cracovia con calma un'ultima volta.</div></div>
+      <div class="tl-item"><div class="tl-time">10:58</div><div class="tl-title">Chiesa Paolina sulla Roccia (Skałka)</div><div class="tl-tags"><span class="tag">⛪ Attrazione</span></div><div class="tl-desc">La suggestiva chiesa costruita sulla roccia, luogo di grande valore storico e spirituale.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Church+of+St+Michael+the+Archangel+and+St+Stanislaus+Krakow" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">12:15</div><div class="tl-title">Pranzo da Pod Wawelem Kompania Kuflowa</div><div class="tl-tags"><span class="tag">🍺 Birreria</span><span class="tag">🍽️ Pranzo</span></div><div class="tl-desc">Ultimo saluto al Wawel con un pranzo tradizionale e una birra proprio sotto il castello.</div><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Pod+Wawelem+Kompania+Kuflowa+Krakow" target="_blank">📍 Apri posizione</a></div>
+      <div class="tl-item"><div class="tl-time">14:24</div><div class="tl-title">Bolt hotel → aeroporto</div><div class="tl-tags"><span class="tag">🚕 Trasporto</span></div><div class="tl-desc">Partenza per l'aeroporto con ampio margine per il volo delle 17:25.</div></div>
+      <div class="tl-item"><div class="tl-time">17:25</div><div class="tl-title">Volo di ritorno FR3045</div><div class="tl-tags"><span class="tag">✈️ Volo</span></div><div class="tl-desc">Cracovia (KRK) → Pescara (PSR), arrivo previsto 19:10.</div></div>
+    </div>
+    <div class="day-nav"><a href="#day4">← Giorno 4</a><a href="#restaurants">Ristoranti →</a></div>
+  </section>
+
+  <!-- RISTORANTI -->
+  <section id="restaurants">
+    <h2 class="sec-title"><span class="bar"></span>Dove abbiamo mangiato</h2>
+    <p class="sec-sub">Selezione dei locali visitati. Clicca sulle intestazioni per ordinare la tabella.</p>
+    <div class="table-tools no-print" id="restFilters">
+      <button class="chip active" data-f="all">Tutti</button>
+      <button class="chip" data-f="trad">Tradizionale</button>
+      <button class="chip" data-f="montagna">Montagna</button>
+      <button class="chip" data-f="veloce">Veloce</button>
+    </div>
+    <div class="table-wrap">
+      <table class="sortable" id="restTable">
+        <thead><tr><th>Nome <span class="arr">↕</span></th><th>Zona <span class="arr">↕</span></th><th>Specialità <span class="arr">↕</span></th><th>Fascia <span class="arr">↕</span></th></tr></thead>
+        <tbody>
+          <tr data-cat="trad"><td>Kuchnia u Doroty</td><td>Centro (via Augustiańska)</td><td>Cucina polacca fatta in casa</td><td>€€</td></tr>
+          <tr data-cat="trad"><td>Kuchnia u Babci Maliny</td><td>Centro (via Sławkowska)</td><td>Pierogi, zuppe tradizionali</td><td>€€</td></tr>
+          <tr data-cat="montagna"><td>Restauracja Góralski Browar</td><td>Zakopane (Krupówki)</td><td>Birra artigianale, piatti montanari</td><td>€€</td></tr>
+          <tr data-cat="trad"><td>HEVRE Bar & Restaurant</td><td>Kazimierz (Quartiere Ebraico)</td><td>Fusione moderna, atmosfera unica</td><td>€€</td></tr>
+          <tr data-cat="trad"><td>Pod Wawelem Kompania Kuflowa</td><td>Sotto il Castello del Wawel</td><td>Birreria tradizionale, porzioni abbondanti</td><td>€€</td></tr>
+          <tr data-cat="veloce"><td>Góralskie Praliny</td><td>Zakopane (Krupówki)</td><td>Dolci e praline al cioccolato</td><td>€</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">€ fino a 10 €/persona · €€ 10-20 € · €€€ oltre 20 €. Prezzi indicativi 2026.</p>
+  </section>
+
+  <!-- TRASPORTI -->
+  <section id="transport">
+    <h2 class="sec-title"><span class="bar"></span>Come ci siamo mossi</h2>
+    <div class="tr-card"><h4>🚕 Bolt</h4><p>Usato per i trasferimenti aeroporto ↔ hotel. Comodo, rapido e molto economico (circa 15-20 € a corsa). Perfetto per l'arrivo serale.</p></div>
+    <div class="tr-card"><h4>🚌 Tour organizzati (Civitates)</h4><p>Abbiamo prenotato tutto (Auschwitz, Miniera di Sale, Terme di Chochołów) tramite la piattaforma Civitates. Affidabile, con conferme immediate e assistenza in italiano. Includeva il trasporto da/per Cracovia.</p></div>
+    <div class="tr-card"><h4>🚗 Auto a noleggio</h4><p>Utilizzata per la gita di un giorno a Zakopane e alle terme di Chochołów. Massima flessibilità per i tempi di montagna.</p></div>
+    <div class="tr-card"><h4>🚶 A piedi</h4><p>Il centro storico di Cracovia è compatto e si esplora benissimo camminando. L'hotel è in posizione strategica per raggiungere tutto a piedi.</p></div>
+  </section>
+
+  <!-- BUDGET -->
+  <section id="budget">
+    <h2 class="sec-title"><span class="bar"></span>Quanto abbiamo speso</h2>
+    <p class="sec-sub">Stime indicative per le attività extra, escluse le prenotazioni già effettuate (voli, hotel).</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Voce</th><th>A persona (stimato)</th></tr></thead>
+        <tbody>
+          <tr><td>Tour Civitates (Auschwitz + Wieliczka)</td><td>~75 €</td></tr>
+          <tr><td>Tour Civitates (Zakopane + Terme Chochołów)</td><td>~65 €</td></tr>
+          <tr><td>Bolt aeroporto ↔ hotel (quota a persona)</td><td>~10 €</td></tr>
+          <tr><td>Pasti e extra (3 giorni)</td><td>~100 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="calc">
+      <div><label for="pax">Numero persone</label><br><input type="number" id="pax" value="4" min="1" max="20"></div>
+      <div style="text-align:right"><div style="font-size:.8rem;color:var(--muted)">Totale stimato attività extra</div><div class="total"><span id="tot">0</span> €</div></div>
+    </div>
+    <div class="conv">
+      <h4>Convertitore EUR → PLN (Złoty)</h4>
+      <div class="row">
+        <input type="number" id="eur" value="10" min="0"> <span>€</span>
+        <span style="color:var(--muted)">≈</span>
+        <span class="out"><span id="pln">0</span> zł</span>
+      </div>
+      <small>Tasso indicativo 1€ ≈ 4.30 zł — verificare il cambio reale prima di partire.</small>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section id="checklist">
+    <h2 class="sec-title"><span class="bar"></span>Non dimenticare</h2>
+    <p class="sec-sub">Spuntando le voci, il progresso viene salvato nel browser.</p>
+    <div class="cl-progress"><div class="cl-bar"><i id="clBar"></i></div><div class="cl-count"><span id="clDone">0</span> / <span id="clTot">0</span> completati</div></div>
+    <div id="checklist-wrap">
+      <div class="cl-group"><h4>📄 Documenti</h4>
+        <label class="cl-item"><input type="checkbox" data-id="d1"><span>Carte d'identità valide per l'espatrio</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="d2"><span>Carte d'imbarco Ryanair</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="d3"><span>Conferme prenotazioni (Civitates, Hotel, Noleggio Auto)</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="d4"><span>Patente di guida (per il noleggio auto)</span></label>
+      </div>
+      <div class="cl-group"><h4>🎒 Da portare</h4>
+        <label class="cl-item"><input type="checkbox" data-id="p1"><span>Felpa o maglione (nella miniera ci sono 14-16°C fissi!)</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="p2"><span>Costume da bagno, ciabatte e telo (per le terme)</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="p3"><span>Sacchetto impermeabile per il costume bagnato</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="p4"><span>Scarpe comode da cammino (molto a piedi)</span></label>
+      </div>
+      <div class="cl-group"><h4>📱 App e servizi</h4>
+        <label class="cl-item"><input type="checkbox" data-id="a1"><span>App Bolt installata e con metodo di pagamento</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="a2"><span>App Civitates con voucher scaricati</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="a3"><span>Mappa offline di Cracovia e Zakopane</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="a4"><span>Contanti in Złoty (PLN) per mance e piccoli acquisti</span></label>
+      </div>
+      <div class="cl-group"><h4>⏳ Ultimi giorni prima</h4>
+        <label class="cl-item"><input type="checkbox" data-id="u1"><span>Check-in online dei voli Ryanair</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="u2"><span>Verificare meteo aggiornato per la montagna</span></label>
+        <label class="cl-item"><input type="checkbox" data-id="u3"><span>Caricare power bank</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- METEO -->
+  <section id="weather">
+    <h2 class="sec-title"><span class="bar"></span>Cosa aspettarsi</h2>
+    <p class="sec-sub">Meteo medio di fine Maggio / inizio Giugno — valori storici, non una previsione puntuale.</p>
+    <div class="wx">
+      <div class="wx-card"><div class="e">☀️</div><div class="v">22 °C</div><div class="l">Massima media</div></div>
+      <div class="wx-card"><div class="e">🌙</div><div class="v">11 °C</div><div class="l">Minima media</div></div>
+      <div class="wx-card"><div class="e">💧</div><div class="v">~60%</div><div class="l">Umidità media</div></div>
+      <div class="wx-card"><div class="e">🌧️</div><div class="v">8-9 gg</div><div class="l">Pioggia nel mese</div></div>
+      <div class="wx-card"><div class="e">🌅</div><div class="v">~04:40</div><div class="l">Alba indicativa</div></div>
+      <div class="wx-card"><div class="e">🌇</div><div class="v">~20:40</div><div class="l">Tramonto indicativo</div></div>
+    </div>
+    <div class="wx-tip"><strong>Consiglio:</strong> giornate piacevoli in città, ma in montagna (Zakopane) e nella miniera le temperature scendono sensibilmente. Vestirsi a strati.</div>
+  </section>
+
+  <!-- FRASI -->
+  <section id="phrases">
+    <h2 class="sec-title"><span class="bar"></span>Un po' di polacco</h2>
+    <p class="sec-sub">Frasi utili con pronuncia indicativa.</p>
+    <div class="ph">
+      <div class="ph-card"><div class="it">Buongiorno</div><div class="hu">Dzień dobry</div><div class="pr">jèn dob-ri</div></div>
+      <div class="ph-card"><div class="it">Grazie</div><div class="hu">Dziękuję</div><div class="pr">jen-ku-ie</div></div>
+      <div class="ph-card"><div class="it">Per favore</div><div class="hu">Proszę</div><div class="pr">pro-she</div></div>
+      <div class="ph-card"><div class="it">Sì / No</div><div class="hu">Tak / Nie</div><div class="pr">tak / nie</div></div>
+      <div class="ph-card"><div class="it">Il conto, per favore</div><div class="hu">Poproszę o rachunek</div><div class="pr">po-pro-she o ra-hu-nek</div></div>
+      <div class="ph-card"><div class="it">Quanto costa?</div><div class="hu">Ile to kosztuje?</div><div class="pr">i-le to ko-sztu-ie</div></div>
+      <div class="ph-card"><div class="it">Dov'è il bagno?</div><div class="hu">Gdzie jest toaleta?</div><div class="pr">gdje iest to-a-le-ta</div></div>
+      <div class="ph-card"><div class="it">Non parlo polacco</div><div class="hu">Nie mówię po polsku</div><div class="pr">nie mu-vie po pol-sku</div></div>
+      <div class="ph-card"><div class="it">Salute! (Brindisi)</div><div class="hu">Na zdrowie!</div><div class="pr">na zdro-vie</div></div>
+      <div class="ph-card"><div class="it">Arrivederci</div><div class="hu">Do widzenia</div><div class="pr">do vi-dze-nia</div></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Guida creata per il viaggio a Cracovia, 29 Maggio – 2 Giugno 2026 · <strong>Szerokiej drogi!</strong> (Buon viaggio!)<br>
+  <a href="index.html">← Torna al blog Stà Pagat...</a>
+</footer>
+
+<a id="torna-blog" href="index.html">← Torna al blog</a>
+
+<!-- LIGHTBOX FOTO -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-head"><h3 style="color:#fff">📸 Foto del viaggio</h3><button class="lb-close" id="lbClose">✕</button></div>
+  <div class="lb-body">
+    <p>Le foto del viaggio verranno caricate qui dopo il 2 giugno 2026.</p>
+    <div class="ph-box">🖼️ Spazio riservato alla galleria di Cracovia, Auschwitz e Zakopane<br><small>(caricheremo le foto nella cartella <code>images/cracovia/</code>)</small></div>
+  </div>
+</div>
+
+<script>
+/* ===== MENU DRAWER ===== */
+const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay');
+function toggleMenu(o){drawer.classList.toggle('open',o);overlay.classList.toggle('open',o)}
+document.getElementById('menuBtn').onclick=()=>toggleMenu(!drawer.classList.contains('open'));
+overlay.onclick=()=>toggleMenu(false);
+document.querySelectorAll('.dl').forEach(a=>a.onclick=()=>toggleMenu(false));
+
+/* ===== TEMA ===== */
+const themeBtn=document.getElementById('themeBtn');
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);
+  themeBtn.textContent=t==='dark'?'🌙 Scuro':'☀️ Chiaro';
+  try{localStorage.setItem('krk-theme',t)}catch(e){}}
+let savedTheme='dark';try{savedTheme=localStorage.getItem('krk-theme')||'dark'}catch(e){}
+setTheme(savedTheme);
+themeBtn.onclick=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+
+/* ===== STAMPA ===== */
+document.getElementById('printBtn').onclick=()=>window.print();
+
+/* ===== LIGHTBOX ===== */
+const lb=document.getElementById('lightbox');
+document.getElementById('photoBtn').onclick=()=>lb.classList.add('open');
+document.getElementById('lbClose').onclick=()=>lb.classList.remove('open');
+lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};
+
+/* ===== COUNTDOWN (decollo Pescara 29/05/2026 21:05) ===== */
+const target=new Date('2026-05-29T21:05:00').getTime();
+function tick(){
+  const now=Date.now(),d=target-now;
+  if(d<=0){document.getElementById('countdown').innerHTML='<div class="cd-box" style="min-width:auto;padding:.8rem 1.4rem"><div class="n" style="font-size:1.3rem">✈️ Buon viaggio!</div></div>';return}
+  const dd=Math.floor(d/86400000),hh=Math.floor(d%86400000/3600000),mm=Math.floor(d%3600000/60000),ss=Math.floor(d%60000/1000);
+  document.getElementById('cd-d').textContent=dd;
+  document.getElementById('cd-h').textContent=String(hh).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(mm).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(ss).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+/* ===== FILTRI RISTORANTI ===== */
+document.querySelectorAll('#restFilters .chip').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#restFilters .chip').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const f=b.dataset.f;
+    document.querySelectorAll('#restTable tbody tr').forEach(tr=>{
+      tr.style.display=(f==='all'||tr.dataset.cat===f)?'':'none';
+    });
+  };
+});
+
+/* ===== TABELLE ORDINABILI ===== */
+document.querySelectorAll('table.sortable').forEach(table=>{
+  table.querySelectorAll('th').forEach((th,col)=>{
+    th.onclick=()=>{
+      const tb=table.tBodies[0],rows=[...tb.rows];
+      const asc=th.dataset.dir!=='asc';th.dataset.dir=asc?'asc':'desc';
+      rows.sort((a,b)=>{
+        let x=a.cells[col].textContent.trim(),y=b.cells[col].textContent.trim();
+        const nx=parseFloat(x),ny=parseFloat(y);
+        if(!isNaN(nx)&&!isNaN(ny))return asc?nx-ny:ny-nx;
+        return asc?x.localeCompare(y):y.localeCompare(x);
+      });
+      rows.forEach(r=>tb.appendChild(r));
+    };
+  });
+});
+
+/* ===== BUDGET CALC ===== */
+const PER_PERSON=75+65+10+100; // 250
+const pax=document.getElementById('pax'),tot=document.getElementById('tot');
+function calcTot(){tot.textContent=(PER_PERSON*Math.max(1,parseInt(pax.value)||1));}
+pax.oninput=calcTot;calcTot();
+
+/* ===== CONVERTITORE ===== */
+const eur=document.getElementById('eur'),pln=document.getElementById('pln'),RATE=4.3;
+function conv(){pln.textContent=((parseFloat(eur.value)||0)*RATE).toFixed(2).replace('.',',');}
+eur.oninput=conv;conv();
+
+/* ===== CHECKLIST PERSISTENTE ===== */
+const boxes=[...document.querySelectorAll('#checklist-wrap input[type=checkbox]')];
+const clDone=document.getElementById('clDone'),clTot=document.getElementById('clTot'),clBar=document.getElementById('clBar');
+clTot.textContent=boxes.length;
+function loadCl(){boxes.forEach(b=>{
+  let v=false;try{v=localStorage.getItem('krk-cl-'+b.dataset.id)==='1'}catch(e){}
+  b.checked=v;b.closest('.cl-item').classList.toggle('done',v);
+});updateCl();}
+function updateCl(){const n=boxes.filter(b=>b.checked).length;clDone.textContent=n;
+  clBar.style.width=(n/boxes.length*100)+'%';}
+boxes.forEach(b=>b.onchange=()=>{
+  b.closest('.cl-item').classList.toggle('done',b.checked);
+  try{localStorage.setItem('krk-cl-'+b.dataset.id,b.checked?'1':'0')}catch(e){}
+  updateCl();
+});
+loadCl();
+</script>
+</body>
+</html>
